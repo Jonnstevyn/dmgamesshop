@@ -1,246 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Cart 🛒 | D♟️M GamesShop</title>
-<style>
-  body {
-    font-family: "Poppins", sans-serif;
-    background: #f5f6fa;
-    margin: 0;
-    padding: 0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart | D&M GamesShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #e94560;     /* Pink accent */
+      --secondary-color: #1f4068;   /* Deep navy */
+      --bg-light: #f5f6fa;
+      --bg-dark: #1b1b2f;
+      --text-dark: #2c3e50;
+      --text-light: #ffffff;
+      --shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
 
-  header {
-    background: linear-gradient(135deg, #1b1b2f, #162447);
-    color: white;
-    text-align: center;
-    padding: 1.2rem 0;
-    box-shadow: 0 4px 10px rgba(80, 52, 34, 0.3);
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  h2 {
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-  }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 1rem;
+    }
 
-  main {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  }
+    header {
+      background: linear-gradient(135deg, var(--bg-dark), var(--secondary-color));
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
 
-  th {
-    text-align: left;
-    padding: 0.75rem;
-    color: white;
-    background: #1b1b2f;
-    letter-spacing: 1px;
-  }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
 
-  td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #ddd;
-  }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
 
-  tr:hover {
-    background: #f1f1f1;
-    transition: 0.3s ease;
-  }
+    th {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 1rem 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-  .qty-btn {
-    padding: 6px 10px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #162447;
-    color: white;
-    transition: 0.3s ease;
-  }
+    td {
+      padding: 1rem 0.75rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
 
-  .qty-btn:hover {
-    background: #1f4068;
-  }
+    tr:hover {
+      background: #f8f9ff;
+      transition: background 0.3s ease;
+    }
 
-  .remove-btn {
-    background: #e94560;
-  }
+    .qty-btn {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-  .remove-btn:hover {
-    background: #ff5964;
-  }
+    .qty-btn:hover {
+      background: #1a3355;
+      transform: scale(1.05);
+    }
 
-  .clear-cart {
-    display: inline-block;
-    background: #e94560;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: 0.3s ease;
-  }
+    .remove-btn {
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-  .clear-cart:hover {
-    background: #ff4f5a;
-  }
+    .remove-btn:hover {
+      background: #ff4f5a;
+      transform: scale(1.05);
+    }
 
-  .checkout {
-    display: inline-block;
-    background: #21bf73;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: 15px;
-    transition: 0.3s ease;
-  }
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
 
-  .checkout:hover {
-    background: #23d189;
-  }
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+    }
 
-  .total {
-    text-align: right;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 1rem;
-  }
+    .btn-return {
+      background: #6c757d;
+      color: white;
+    }
 
-  footer {
-    text-align: center;
-    padding: 1.2rem;
-    background: #1b1b2f;
-    color: white;
-    margin-top: 3rem;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-  }
+    .btn-return:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
 
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
+    .btn-clear {
+      background: var(--primary-color);
+      color: white;
+    }
 
-  @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
+    .btn-clear:hover {
+      background: #ff4f5a;
+      transform: translateY(-2px);
+    }
 
-</style>
+    .btn-checkout {
+      background: #21bf73;
+      color: white;
+    }
+
+    .btn-checkout:hover {
+      background: #1da965;
+      transform: translateY(-2px);
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 1rem 0;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #777;
+      font-size: 1.1rem;
+    }
+
+    .empty-cart p {
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header h2 { font-size: 1.5rem; }
+      main { padding: 1rem; border-radius: 12px; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.75rem 0.5rem; }
+      .qty-btn { width: 28px; height: 28px; font-size: 0.9rem; }
+      .action-buttons { flex-direction: column; }
+      .btn { font-size: 0.95rem; padding: 14px; }
+    }
+
+    @media (max-width: 480px) {
+      header h2 { font-size: 1.3rem; }
+      .action-buttons { gap: 12px; }
+      .btn { min-width: 100%; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h2>🛍️ Your D♟️M GamesShop Cart</h2>
+    <h2>Your D&M GamesShop Cart</h2>
   </header>
 
   <main>
-    <table id="cart-table">
-      <thead>
-        <tr>
-          <th>Game</th>
-          <th>Price (KSH)</th>
-          <th>Quantity</th>
-          <th>Total</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div id="cart-container">
+      <table id="cart-table">
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Price (KSH)</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
 
-    <p id="grand-total" class="total">Total: KSH 0</p>
+      <p id="grand-total" class="total">Total: KSH 0</p>
 
-    <div style="text-align:right;">
-      <button class="clear-cart" onclick="clearCart()"> Clear Cart</button>
-      <button class="checkout" onclick="checkout()"> Checkout via WhatsApp</button>
+      <div class="action-buttons">
+        <button class="btn btn-return" onclick="goBack()">Return to Shopping</button>
+        <button class="btn btn-clear" onclick="clearCart()">Clear Cart</button>
+        <button class="btn btn-checkout" onclick="checkout()">Checkout via WhatsApp</button>
+      </div>
     </div>
   </main>
 
   <footer>
-    © 2025 D♟️M GamesShop | Built for Fun, Strategy, and Smiles 🎲
+    © 2025 D&M GamesShop | Built for Fun, Strategy, and Smiles
   </footer>
 
   <script>
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  function renderCart() {
-    const tbody = document.querySelector("#cart-table tbody");
-    tbody.innerHTML = "";
-    let grandTotal = 0;
+    function renderCart() {
+      const tbody = document.querySelector("#cart-table tbody");
+      const container = document.getElementById("cart-container");
+      tbody.innerHTML = "";
+      let grandTotal = 0;
 
-    if (cart.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:1rem;">Your cart is empty </td></tr>`;
-    } else {
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-cart fade-in">
+            <p>Your cart is empty</p>
+            <button class="btn btn-return" onclick="goBack()" style="display:inline-block; margin-top:1rem;">
+              Return to Shopping
+            </button>
+          </div>
+        `;
+        document.getElementById("grand-total").textContent = "Total: KSH 0";
+        return;
+      }
+
       cart.forEach((item, index) => {
         const total = item.price * item.quantity;
         grandTotal += total;
 
         tbody.innerHTML += `
           <tr class="fade-in">
-            <td>${item.name}</td>
-            <td>${item.price}</td>
-            <td>
-              <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-              ${item.quantity}
+            <td><strong>${item.name}</strong></td>
+            <td>KSH ${item.price}</td>
+            <td style="text-align:center;">
+              <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+              <strong style="margin:0 10px;">${item.quantity}</strong>
               <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
             </td>
-            <td>${total}</td>
-            <td><button class="qty-btn remove-btn" onclick="removeItem(${index})">Remove</button></td>
+            <td><strong>KSH ${total}</strong></td>
+            <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
           </tr>
         `;
       });
+
+      document.getElementById("grand-total").textContent = `Total: KSH ${Math.round(grandTotal)}`;
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    document.getElementById("grand-total").textContent = `Total: KSH ${Math.round(grandTotal)}`;
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  function changeQty(index, delta) {
-    cart[index].quantity += delta;
-    if (cart[index].quantity <= 0) cart.splice(index, 1);
-    renderCart();
-  }
-
-  function removeItem(index) {
-    cart.splice(index, 1);
-    renderCart();
-  }
-
-  function clearCart() {
-    if (confirm("Are you sure you want to clear your cart?")) {
-      cart = [];
+    function changeQty(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
       renderCart();
     }
-  }  
 
-  function checkout() {
-    if (cart.length === 0) {
-      alert("Your cart is empty 🫙");
-      return;
-    }
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const message = encodeURIComponent(
-      "Hello! Here’s my order from D♟️M GamesShop:\n\n" +
-      cart.map(i => `${i.name} x${i.quantity} - KSH ${i.price * i.quantity}`).join("\n") +
-      `\n\nTotal: KSH ${total}`
-    );
-    window.location.href = `https://wa.me/254797577567?text=${message}`;
+
+
+function clearCart() {
+  if (confirm("Clear your entire cart?")) {
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart)); // Sync with storage
+    renderCart();
   }
+}
 
-  renderCart();
+function removeItem(index) {
+  if (confirm("Remove this game from cart?")) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart)); // Sync after remove
+    renderCart();
+  }
+}
+
+    function goBack() {
+      window.location.href = "index.html"; // CHANGE TO YOUR MAIN PAGE
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty");
+        return;
+      }
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const message = encodeURIComponent(
+        "Hello! Here’s my order from D&M GamesShop:\n\n" +
+        cart.map(i => `• ${i.name} × ${i.quantity} = KSH ${i.price * i.quantity}`).join("\n") +
+        `\n\nTotal: KSH ${total}\nThank you!`
+      );
+      window.open(`https://wa.me/254797577567?text=${message}`, "_blank");
+    }
+
+    // Auto-render on load
+    document.addEventListener("DOMContentLoaded", renderCart);
   </script>
 </body>
 </html>
