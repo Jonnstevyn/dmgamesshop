@@ -16,38 +16,51 @@ navLinks.forEach(link => {
 })
 
 //Initialize swiper
+// Initialize swiper – FULLY SWIPABLE + 1 CARD ON MOBILE
 const swiper = new Swiper('.slider-wrapper', {
     loop: true,
     grabCursor: true,
-    spaceBetween: 25,
-  
-    // If we need pagination
+    spaceBetween: 30,
+    centeredSlides: true,
+    slidesPerView: 'auto',           // REQUIRED FOR SWIPE + CENTER
+    watchSlidesProgress: true,
+
+    // Enable touch
+    touchRatio: 1,
+    touchAngle: 45,
+    simulateTouch: true,
+    allowTouchMove: true,
+
+    // Pagination
     pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
     },
-  
-    // Navigation arrows
+
+    // Navigation – YOUR CLASSES
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-slide-button:last-of-type',
+        prevEl: '.swiper-slide-button:first-of-type'
     },
 
-
-    //Responsive Breakpoints
+    // Breakpoints
     breakpoints: {
         0: {
-            slidesPerView: 1
+            slidesPerView: 1,
+            spaceBetween: 20
         },
         768: {
-            slidesPerView: 2
+            slidesPerView: 2,
+            spaceBetween: 25
         },
         1024: {
-            slidesPerView: 3
+            slidesPerView: 3,
+            spaceBetween: 30
         }
     }
+});
 
-  });
+
 
   
