@@ -8,8 +8,6 @@ box-sizing: border-box;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-
-
 :root {
     /*Colors*/
     --white-color: #fff;
@@ -92,7 +90,7 @@ img {
 header {
     position: fixed;
     width: 100%;
-    z-index: 5;
+    z-index: 1000; /* Increased to be above content but below mobile menu */
     background: var(--primary-color);
 }
 
@@ -101,7 +99,6 @@ header .navbar {
     padding: 20px;
     align-items: center;
     justify-content: space-between;
-    
 }
 
 .navbar .nav-logo .logo-text {
@@ -120,7 +117,7 @@ header .navbar {
     color: var(--white-color);
     font-size: var(--font-size-m);
     border-radius: var(--border-radius-m);
-    transition: 0.3 ease;
+    transition: 0.3s ease;
 }
 
 .navbar .nav-menu .nav-link:hover {
@@ -132,24 +129,16 @@ header .navbar {
     display: none;
 }
 
-
-
 /* ------------------------------------------------------------------------- */
 /* 1. HERO SECTION CONTAINER (Retaining essential margin/padding fixes) */
 /* ------------------------------------------------------------------------- */
 .hero-section {
     min-height: 100vh;
     padding-bottom: 0; 
-    
-    /* FIX: Ensure no gaps are created around this specific section */
     margin: 0; 
     width: 100%;
     position: relative; 
-    
-    /* Ensure content is stacked above the background */
     z-index: 2; 
-    
-    /* ADDED: Fixes potential tiny horizontal scrollbar specific to this section */
     overflow-x: hidden; 
 }
 
@@ -157,30 +146,18 @@ header .navbar {
 /* 2. BACKGROUND IMAGE PSEUDO-ELEMENT (The Core Fixes) */
 /* ------------------------------------------------------------------------- */
 .hero-section::before {
-    /* Content is required for pseudo-elements to work */
     content: ''; 
-    
-    /* Position and Size: Make it cover the whole hero section */
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
-    /* Set the background image and effects here */
     background-image: url(https://img.freepik.com/free-psd/3d-rendering-board-games-still-life_23-2151709300.jpg);
     background-size: cover;          
     background-position: center;     
     background-repeat: no-repeat;    
-    
-    /* FIX FOR MOBILE: This ensures the image covers the whole viewport, 
-       even if content extends past the bottom. */
     background-attachment: fixed;
-    
-    /* Apply the filter only to this background element */
     filter: brightness(60%); 
-    
-    /* Position it behind the text */
     z-index: -1; 
 }
 
@@ -192,14 +169,9 @@ header .navbar {
     align-items: center;
     min-height: 100vh;
     color: var(--white-color);
-    /* CHANGE: Centers the main content block (hero-details) horizontally and vertically */
     justify-content: center; 
-    
-    /* Ensure content is clickable and visible above background */
     position: relative;
-    z-index: 3; /* Higher than .hero-section (2) */
-
-    /* Allow content to wrap if it's too wide (important for mobile) */
+    z-index: 3;
     flex-wrap: wrap; 
 }
 
@@ -207,40 +179,30 @@ header .navbar {
 /* 4. HERO DETAILS (Text Centering and Styling) */
 /* ------------------------------------------------------------------------- */
 .hero-section .hero-details {
-    /* ADDED: This centers all the text blocks and buttons inside this container */
     text-align: center;
-    
-    /* Padding to prevent text from touching screen edges, especially on mobile */
     padding: 0 20px; 
-    
-    /* Optional: Limit the width of the details block for clean centering on huge screens */
     max-width: 800px;
 }
 
-/* Optional: To make your text even more readable (Keep these, they are good) */
 .hero-section h2, .hero-section h3, .hero-section p {
-    color: white; /* Ensure text is white for high contrast */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a subtle shadow for better legibility */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
-
 
 .hero-section .hero-details .title {
     font-size: var(--font-size-xx1);
     color: var(--secondary-color);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
 }
 
 .hero-section .hero-details .subtitle {
     margin-top: 8px;
-    /* Adjusted for better centering on all screens */
     max-width: 100%; 
     font-size: var(--font-size-x1);
     font-weight: var(--font-weight-semibold);
 }
 
 .hero-section .hero-details .description {
-    /* Adjusted for better centering on all screens, uses auto margins */
     max-width: 100%; 
     margin: 24px auto 40px; 
     font-size: var(--font-size-m);
@@ -249,17 +211,23 @@ header .navbar {
 .hero-section .hero-details .buttons {
     display: flex;
     gap: 23px;
-    /* ADDED: Center the buttons horizontally */
     justify-content: center;
-    /* Ensure buttons wrap on very small screens */
-     
+    white-space: nowrap; 
+    overflow-x: auto; 
+    flex-shrink: 0; 
 }
 
-
-
+.hero-section .hero-details .delivery-incentive {
+    color: #f1efeb; 
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 60px; 
+    margin-bottom: 25px; 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); 
+}
 
 /* ------------------------------------------------------------------------- */
-/* 5. BUTTON STYLES (Cleaned up and kept original functionality) */
+/* 5. BUTTON STYLES */
 /* ------------------------------------------------------------------------- */
 .hero-section .hero-details .button {
     padding: 10px 26px;
@@ -268,8 +236,8 @@ header .navbar {
     border-radius: var(--border-radius-m);
     background: var(--secondary-color);
     font-weight: var(--font-weight-medium);
-    transition: 0.3s ease; /* Ensure transition time unit is included */
-    cursor: pointer; /* Added for usability */
+    transition: 0.3s ease;
+    cursor: pointer;
 }
 
 .hero-section .hero-details .button:hover,
@@ -285,12 +253,33 @@ header .navbar {
     background: var(--secondary-color);
 }
 
-
-
 /*About section*/
 .about-section {
-    padding: 20px;
-    background: var(--medium-gray-color);
+    min-height: 80vh;
+    padding-bottom: 0; 
+    margin: 0; 
+    width: 100%;
+    position: relative; 
+    z-index: 2; 
+    overflow-x: hidden;
+
+}
+.about-section::before{
+    content: ''; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url(https://t4.ftcdn.net/jpg/07/58/10/45/360_F_758104584_F6Cxgc5BRoGIs0PKTaiq2lnQOGnkLNlE.jpg);
+
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    z-index: -1;
 }
 
 .about-section .section-content {
@@ -320,6 +309,10 @@ header .navbar {
     margin: 50px 0 30px;
     text-align: center;
     font-size: var(--font-size-m);
+    text-shadow: 2px 2px 4px rgba(11, 11, 11, 0.7);
+    color: #FFFFFF;
+    font-weight: var(--font-weight-semibold);
+    
 }
 
 .about-section .social-link-list {
@@ -329,9 +322,9 @@ header .navbar {
 }
 
 .about-section .social-link-list .social-link{
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-size: var(--font-size-1);
-    transition: 0.2 ease;
+    transition: 0.2s ease;
 }
 
 .about-section .social-link-list .social-link:hover{
@@ -346,39 +339,36 @@ header .navbar {
 }
 
 .menu-section .section-title {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
-/* --------------------------------------------------------------
-   PERFECTLY CENTERED CATEGORY NAV
--------------------------------------------------------------- */
-/* --------------------------------------------------------------
-   SECTION TITLE — TIGHTER SPACING
--------------------------------------------------------------- */
+/* -------------------------------------------------------------- */
+/* SECTION TITLE — TIGHTER SPACING */
+/* -------------------------------------------------------------- */
 .section-title {
-  margin-bottom: 8px !important;   /* ← Reduce gap to category nav */
+  margin-bottom: 8px !important;
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
   color: #1b1b2f;
 }
-/* --------------------------------------------------------------
-   PERFECTLY CENTERED + SWIPEABLE CATEGORY NAV
--------------------------------------------------------------- */
+
+/* -------------------------------------------------------------- */
+/* PERFECTLY CENTERED + SWIPEABLE CATEGORY NAV */
+/* -------------------------------------------------------------- */
 #category-nav {
   display: flex;
-  justify-content: center;     /* ← CENTER ALL */
+  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
   gap: 12px;
   padding: 12px 16px;
   background: #f8f9fa;
+  margin-bottom: 10px;
   border-bottom: 1px solid #eee;
   position: sticky;
-  top: 0;
-  z-index: 100;
-
-  /* HORIZONTAL SCROLL ON MOBILE */
+  top: 60px; /* Sticks below the 60px fixed header */
+  z-index: 999; /* Below header (1000), below mobile menu (1001+) */
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -411,7 +401,7 @@ header .navbar {
   order: -1;
   flex: 1 1 120px;
   min-width: 100px;
-  max-width: 180px;
+  max-width: 160px;
 }
 
 .search-input {
@@ -456,12 +446,30 @@ header .navbar {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* MOBILE: 1 GAME CARD PER ROW, FULL WIDTH */
+@media (max-width: 768px) {
+  .menu-item {
+    width: calc(100%-20px) !important;
+    max-width: none !important;
+    min-width: 280px;
+    margin: 0 auto 20px;
+  }
+
+  #menu-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 10px;
+  }
+}
+
 /* MOBILE: TIGHT, CENTERED, SWIPEABLE */
 @media (max-width: 600px) {
   #category-nav {
     padding: 10px 12px;
     gap: 10px;
-    justify-content: flex-start; /* ← Let flex-start + scroll handle centering */
+    justify-content: flex-start;
+    z-index: 999;
   }
 
   #category-nav .category-btn[data-category="all"] {
@@ -476,9 +484,11 @@ header .navbar {
     min-width: 70px;
   }
 
+  
+
   .search-container {
     min-width: 90px;
-    max-width: 130px;
+    max-width: 100px;
   }
 
   .search-input {
@@ -487,11 +497,10 @@ header .navbar {
   }
 }
 
-/* --------------------------------------------------------------
-   NEW: SEARCH INPUT STYLING
--------------------------------------------------------------- */
+/* -------------------------------------------------------------- */
+/* NEW: SEARCH INPUT STYLING */
+/* -------------------------------------------------------------- */
 #search-input {
-    /* Style the input field itself */
     padding: 10px 15px;
     margin-right: 20px; 
     border: 2px solid #ddd;
@@ -501,7 +510,7 @@ header .navbar {
     background: #fff;
     min-width: 250px; 
     transition: border-color 0.2s, box-shadow 0.2s;
-    flex-shrink: 0; /* Prevents it from shrinking too much */
+    flex-shrink: 0;
     height: 45px; 
 }
 
@@ -524,18 +533,16 @@ header .navbar {
 
 /* CARD – BIGGER, IMAGE DOMINATES */
 .menu-item {
-    width: 280px;                    /* ↑ Bigger than 250px */
+    width: 300px;
     background: #fff;
-    padding: 16px;
+    padding: 8px;
     border-radius: 18px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 460px;
 }
-
-
 
 .menu-item:hover {
     transform: translateY(-8px);
@@ -545,11 +552,13 @@ header .navbar {
 /* IMAGE – TAKES UP MOST SPACE */
 .menu-item img {
     width: 100%;
-    height: 220px;                   /* ↑ Much bigger */
+    height: 220px;
     object-fit: cover;
     border-radius: 14px;
     margin-bottom: 12px;
 }
+
+
 
 /* TEXT CONTENT – TIGHTER, CLEAN */
 .menu-item h3 {
@@ -558,17 +567,9 @@ header .navbar {
     font-weight: bold;
     color: var(--dark-color);
     line-height: 1.3;
-}
-.menu-item h3,
-.menu-item p.price {
     text-align: center !important;
     margin-left: auto !important;
     margin-right: auto !important;
-}
-
-/* Ensure the paragraph for description is also centered */
-.menu-item p:not(.price) {
-    text-align: center !important;
 }
 
 .menu-item p:not(.price) {
@@ -578,6 +579,7 @@ header .navbar {
     overflow: hidden;
     margin: 0 0 10px;
     line-height: 1.4;
+    text-align: center !important;
 }
 
 .menu-item p.price {
@@ -585,7 +587,8 @@ header .navbar {
     color: #8b4513;
     margin: 0 0 12px;
     font-size: 1.15rem;
-    }
+    text-align: center !important;
+}
 
 /* ADD TO CART – SLIGHTLY BIGGER */
 .menu-item .add-to-cart {
@@ -599,13 +602,13 @@ header .navbar {
     font-size: 1rem;
     font-weight: var(--font-weight-medium);
     align-self: center;
-    
 }
 
 .menu-item .add-to-cart:hover {
     background: #2a2a44;
     transform: scale(1.05);
 }
+
 /* PRICE CONTAINER */
 .price-container {
     display: flex;
@@ -615,6 +618,7 @@ header .navbar {
     margin: 8px 0 12px;
     flex-wrap: wrap;
 }
+
 /* UNIFORM CARD HEIGHT */
 .menu-item {
   position: relative;
@@ -628,9 +632,9 @@ header .navbar {
 }
 .menu-item .offer-countdown { min-height: 28px; }
 
-/* STRIKETHROUGH FIX: Targeting the <span> element in the current JavaScript */
+/* STRIKETHROUGH FIX */
 .menu-item span.old-price {
-  text-decoration: line-through !important; /* Keeps the essential strikethrough */
+  text-decoration: line-through !important;
   color: #cc0000;
   opacity: 0.7;
   font-size: 0.9em;
@@ -639,8 +643,8 @@ header .navbar {
 /* RIBBON */
 .offer-ribbon {
   position: absolute;
-  top: 12px;
-  right: -8px;
+  top: 45px;
+  right: -60px;;
   background: linear-gradient(45deg, #e74c3c, #41ec4c);
   color: #fff;
   font-weight: bold;
@@ -649,7 +653,7 @@ header .navbar {
   border-radius: 0 4px 4px 0;
   box-shadow: 0 2px 6px rgba(0,0,0,.2);
   transform: rotate(12deg);
-  z-index: 10;
+  z-index: 6;
 }
 
 /* TIMER */
@@ -676,7 +680,6 @@ header .navbar {
 .sale-price { color: #27ae60; }
 .regular-price { color: #333; }
 
-
 /* RESPONSIVE: 4 → 3 → 2 → 1 */
 @media (max-width: 1300px) {
     .menu-item { width: calc(33.33% - 14px); max-width: 280px; }
@@ -694,14 +697,13 @@ header .navbar {
     #menu-list { padding: 0 10px; gap: 16px; }
 }
 
-
 /* GLUE: Cart locked to far-right */
 .nav-cart-sticky {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: 12;
 }
 
 /* CART BUTTON */
@@ -761,7 +763,6 @@ header .navbar {
     animation: pulse-badge 0.6s ease-out;
 }
 
-
 /* Mobile */
 @media (max-width: 900px) {
     .nav-cart-sticky { right: 60px; }
@@ -772,68 +773,310 @@ header .navbar {
     }
 }
 
-/*Testimonials section Styling*/
-.testimonials-section {
-    padding: 50px 0 10px;
-    background: var(--light-pink-color);
-}
-
-.testimonials-section .slider-wrapper {
+/* BUNDLE CARD */
+.bundle-card {
+    border: 2px solid #21bf73;
+    position: relative;
     overflow: hidden;
-    margin: 0 60px 50px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.testimonials-section .testimonial {
-    -webkit-user-select: none;
-    user-select: none;
-    display: flex;
-    padding: 35px;
+/* ORANGE RIBBON — YOUR STYLE */
+.bundle-ribbon {
+    position: absolute;
+    top: 45px;
+    right: -60px;
+    background: rgb(212, 95, 16);
+    color: white;
+    padding: 6px 60px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transform: rotate(45deg);
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* SWIPEABLE IMAGES */
+.bundle-swiper-container {
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: none;
+
+}
+
+
+.bundle-card .bundle-swiper-container {
+    display: block;
+}
+
+.bundle-swiper {
+    --swiper-pagination-bullet-inactive-color: #9d1515;
+    --swiper-pagination-color: #21bf73;
+}
+
+.bundle-swiper img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* SINGLE IMAGE (NON-BUNDLES) */
+.single-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* BUNDLE GAMES LIST */
+.bundle-games {
+    font-weight: 600;
+    color: #21bf73;
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+/* BUNDLE PRICE */
+.bundle-mode .bundle-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.bundle-mode .bundle-price {
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* SALE RIBBON */
+.offer-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    background: #e91e63;
+    color: white;
+    padding: 4px 45px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+
+
+/* ===================================================== */
+/* HOW TO PLAY – 1 FULL CARD ON MOBILE, CENTERED, CLEAN */
+/* ===================================================== */
+.testimonials-section {
+    padding: 60px 0 80px;
+    background: var(--light-pink-color);
+    overflow: hidden;
+}
+
+.testimonials-section .section-title {
+    padding-bottom: 40px;
     text-align: center;
+}
+
+/* Swiper Container */
+.testimonials-section .slider-wrapper {
+    overflow: visible !important;
+    margin: 0 auto !important;
+    padding: 0 10px;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* CARD – FULL WIDTH ON MOBILE, FIXED ON DESKTOP */
+.testimonials-section .testimonial {
+    display: flex !important;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 32px 24px;
+    margin: 15px auto;
+    min-height: 520px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s ease;
 
-}
-.testimonials-section .testimonial .user-image {
-    transition: transform 0.5s ease;
-    transform-origin: center;
-}
-.testimonials-section .testimonial .user-image:hover {
-    transform: scale(1.12);
+    /* MOBILE: FULL WIDTH, DESKTOP: FIXED */
+    width: 100% !important;
+    max-width: 340px !important;
+    flex: 0 0 100% !important;
+    min-height: 400px;
+    height: auto !important;
 }
 
+.testimonials-section .testimonial:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Image */
 .testimonials-section .testimonial .user-image {
     width: 180px;
     height: 180px;
     object-fit: cover;
-    margin-bottom: 50px;
-    border-radius: var(--border-radius-circle);
+    border-radius: 50%;
+    margin-bottom: 24px;
+    border: 4px solid wheat;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
 }
 
+.testimonials-section .testimonial .user-image:hover {
+    transform: scale(1.1);
+}
+
+/* Title */
 .testimonials-section .testimonial .name {
-    margin-bottom: 16px;
-    font-size: var(--font-size-m);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 16px;
+    line-height: 1.3;
 }
 
+/* Text – FULL, NO SCROLL */
 .testimonials-section .testimonial .feedback {
-    line-height: 25px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    font-style: italic;
+    display: block !important;
+    overflow: visible !important;
+    max-height: none !important;
 }
 
-.testimonials-section .swiper-pagination-bullet {
-    width: 15px;
-    height: 15px;
-    opacity: 1;
-    background: var(--secondary-color);
+.feedback {
+    all: unset;
+    font-style: italic;
+    color: #2c3e50;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    text-align: center;
+    display: block !important;
 }
 
+.feedback::-webkit-scrollbar { display: none !important; }
+
+/* Arrows */
 .testimonials-section .swiper-slide-button {
-    margin-top: -50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     color: var(--secondary-color);
-    transition: 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
 .testimonials-section .swiper-slide-button:hover {
+    background: white;
     color: var(--primary-color);
+    transform: translateY(-50%) scale(1.12);
 }
+
+.testimonials-section .swiper-slide-button:first-of-type {
+    left: 10px;
+}
+
+.testimonials-section .swiper-slide-button:last-of-type {
+    right: 10px;
+}
+
+/* Pagination */
+.testimonials-section .swiper-pagination {
+    margin-top: 20px;
+}
+
+.testimonials-section .swiper-pagination-bullet {
+    background: var(--secondary-color);
+    opacity: 0.5;
+}
+
+.testimonials-section .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--primary-color);
+}
+
+/* ==================================== */
+/* RESPONSIVE – MOBILE FIRST            */
+/* ==================================== */
+@media (min-width: 768px) {
+    .testimonials-section .testimonial {
+        width: 340px !important;
+        max-width: 340px !important;
+        flex: 0 0 340px !important;
+        margin: 15px;
+    }
+
+    .testimonials-section .swiper-slide-button:first-of-type {
+        left: -24px;
+    }
+
+    .testimonials-section .swiper-slide-button:last-of-type {
+        right: -24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-section {
+        padding: 50px 0 60px;
+    }
+
+    .testimonials-section .testimonial {
+        padding: 28px 20px;
+        min-height: 480px;
+        margin: 10px auto;
+    }
+
+    .testimonials-section .testimonial .user-image {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 20px;
+    }
+
+    .testimonials-section .testimonial .name {
+        font-size: 1.3rem;
+    }
+
+    .testimonials-section .testimonial .feedback {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .testimonials-section .swiper-slide-button {
+        width: 42px;
+        height: 42px;
+        font-size: 1.3rem;
+    }
+}
+
 
 /*Contact section styling*/
 .contact-section {
@@ -938,18 +1181,18 @@ header .navbar {
 }
 
 /* Responsive media query code for max width 1024px*/
-@media screen  and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
     .menu-section .menu-list{
         gap: 60px;
     }
 
     .menu-section .menu-list .menu-item {
-    flex: 1 1 calc(33.33% - 60px); /* 3 per row */
-}
+        flex: 1 1 calc(33.33% - 60px);
+    }
 }
 
 /* Responsive media query code for max width 900px*/
-@media screen  and (max-width: 900px) {
+@media screen and (max-width: 900px) {
     :root {
         --font-size-m: 1rem;
         --font-size-1: 1.3rem;
@@ -967,6 +1210,7 @@ header .navbar {
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
         background: rgba(0, 0, 0, 0.2);
+        z-index: 1001; /* Above #category-nav (999), below .nav-menu (200000) */
     }
 
     .navbar :where(#menu-close-button, #menu-open-button) {
@@ -998,13 +1242,14 @@ header .navbar {
         padding-top: 100px;
         box-shadow: 2px 0 8px rgba(0,0,0,0.2);
         background: linear-gradient(to bottom, rgb(8, 8, 7), #4a3b14);
-        transition: left 0.3 ease;
-        color: var(--white-color);
+        transition: left 0.3s ease;
+        color: var(--white-color);    
+        z-index: 200000; /* Highest */
     }
 
-body.show-mobile-menu .navbar .nav-menu {
-    left: 0;
-}
+    body.show-mobile-menu .navbar .nav-menu {
+        left: 0;
+    }
 
     .navbar .nav-menu .nav-link {
         color: var(--white-color);
@@ -1064,33 +1309,13 @@ body.show-mobile-menu .navbar .nav-menu {
     }
 }
 
-.feedback {
-    max-height: 5.5em;
-    overflow-y: auto;
-    text-overflow: ellipsis;
-    line-height: 1.5em;
-    padding-right: 6px;
-    scrollbar-width: thin;
-    -webkit-mask-image: linear-gradient(to bottom,black 75%, transparent 100%);
-    mask-image: linear-gradient(to bottom,black 75%, transparent 100%);
-}
-
-.feedback::-webkit-scrollbar {
-    width: 5px;
-}
-
-.feedback::-webkit-scrollbar-thumb {
-    background-color: #d2b03f;
-    border-radius: 10px;
-}
-
 
 
 /* Responsive media query code for max width 640px*/
 @media screen and (max-width: 640px) {
     .menu-item {
-    flex: 1 1 100%; /* 1 per row on phones */
-    max-width: 300px; /* cap width so they don’t get too wide */
+        flex: 1 1 100%;
+        max-width: 300px;
     }
 
     .menu-section .menu-list .menu-item, 
@@ -1111,30 +1336,116 @@ body.show-mobile-menu .navbar .nav-menu {
         gap: 20px;
     }
 }
-
-/* Only show open button by default, hide close button */
+/* RESPONSIVE: MOBILE MENU – FIXED BUTTON VISIBILITY */
 @media screen and (max-width: 900px) {
-    #menu-close-button {
-        display: none;
+    :root {
+        --font-size-m: 1rem;
+        --font-size-1: 1.3rem;
+        --font-size-x1: 1.5rem;
+        --font-size-xx1: 1.8rem;
     }
 
-     .menu-item {
-    flex: 1 1 calc(50% - 20px); /* 2 per row on tablets */
-    max-width: 300px; /* cap width so they don’t get too wide */
+    /* PREVENT SCROLL WHEN MENU OPEN */
+    body.show-mobile-menu {
+        overflow: hidden;
     }
 
-    #menu-open-button {
-        display: block;
+    /* HAMBURGER & CLOSE BUTTONS – ONLY ONE VISIBLE AT A TIME */
+    .navbar #menu-open-button,
+    .navbar #menu-close-button {
+        display: block !important;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.8rem;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1002;
+        padding: 8px;
+        line-height: 1;
     }
-    body.show-mobile-menu #menu-close-button {
-        display: block;
+
+    /* DEFAULT STATE: ONLY HAMBURGER VISIBLE */
+    .navbar #menu-open-button {
+        display: block !important;
     }
-    body.show-mobile-menu #menu-open-button {
-        display: none;
+
+    .navbar #menu-close-button {
+        display: none !important; /* HIDDEN BY DEFAULT */
+    }
+
+    /* WHEN MENU IS OPEN: SHOW CLOSE, HIDE HAMBURGER */
+    body.show-mobile-menu .navbar #menu-open-button {
+        display: none !important;
+    }
+
+    body.show-mobile-menu .navbar #menu-close-button {
+        display: block !important;
+    }
+
+    /* BACKDROP */
+    body.show-mobile-menu header::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        transition: opacity 0.3s ease;
+    }
+
+    /* MOBILE MENU PANEL */
+    .navbar .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        height: 100vh;
+        background: linear-gradient(to bottom, #3b141c, #5d1f2a);
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+        transition: left 0.35s ease;
+        z-index: 1001;
+        overflow-y: auto;
+    }
+
+    body.show-mobile-menu .navbar .nav-menu {
+        left: 0;
+    }
+
+    .navbar .nav-menu .nav-link {
+        color: white;
+        font-size: 1.3rem;
+        padding: 18px 0;
+        width: 100%;
+        text-align: center;
+        transition: background 0.2s ease;
+    }
+
+    .navbar .nav-menu .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* OTHER MOBILE ADJUSTMENTS (keep your existing ones) */
+    .hero-section .section-content,
+    .about-section .section-content,
+    .contact-section .section-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-section .hero-details .buttons {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }
-
-
 /* ------------------------------------------------------------------------- */
 /* 4. HERO DETAILS - BUTTONS (Default: Single Line Layout) */
 /* ------------------------------------------------------------------------- */
@@ -1142,56 +1453,27 @@ body.show-mobile-menu .navbar .nav-menu {
     display: flex;
     gap: 23px;
     justify-content: center;
-    
-    /* Ensure no text wrapping inside buttons */
     white-space: nowrap; 
-    
-    /* Allow buttons to overflow the screen if necessary (for desktop/tablet) */
     overflow-x: auto; 
-    
-    /* Prevent buttons from shrinking on larger screens where single line is desired */
     flex-shrink: 0; 
 }
 
-/* ------------------------------------------------------------------------- */
-/* MEDIA QUERY: Layout for Small Screens (e.g., Phones) */
-/* ------------------------------------------------------------------------- */
 /* MEDIA QUERY: Shrink Buttons and Padding on Small Screens (below 768px) */
 @media (max-width: 768px) { 
-    /* 1. MAXIMIZE SPACE: Reduce the padding on the main content container to minimize wasted space */
     .hero-section .hero-details {
-        /* Reducing horizontal padding from 20px down to just 5px */
         padding: 0 5px; 
     }
     
-    /* 2. SHRINK BUTTON GAP */
     .hero-section .hero-details .buttons {
-        /* Reduced gap from 23px down to a minimal 5px */
         gap: 5px; 
     }
 
-    /* 3. SHRINK BUTTON SIZE */
     .hero-section .hero-details .button {
-        /* Reduce padding from 10px 26px to a much smaller 6px 8px */
         padding: 6px 8px; 
-        
-        /* Reduce font size slightly to gain extra space */
-        font-size: 0.9em; /* Using 'em' or 'rem' is better than fixed px */
+        font-size: 0.9em;
     }
-.hero-section::before {
-        /* FIX: Push the image inward from the side edges by centering it on the Y-axis (vertical) 
-           but giving it a custom position on the X-axis (horizontal). 
-           
-           Try 40% or 60% for X-axis positioning. 
-           (50% is 'center'. 40% will pull the center slightly to the left, 
-           and 60% will pull it slightly to the right, showing more of the opposite edge.) 
-        */
-        
-        /* TEST 1: If the pattern is being cropped from the right, try pulling the center to the LEFT (e.g., 40%) */
+
+    .hero-section::before {
         background-position: 10% center; 
-        
-        /* TEST 2: If the pattern is being cropped from the left, try pulling the center to the RIGHT (e.g., 60%) */
-        /* background-position: 60% center; */ 
     }
 }
-
