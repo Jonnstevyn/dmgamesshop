@@ -253,24 +253,31 @@ header .navbar {
     background: var(--secondary-color);
 }
 
-/*About section*/
+/* --- Corrected CSS for ABOUT section --- */
+
+/* Parent container defining the space (min-height should be enough) */
 .about-section {
-    min-height: 80vh;
-    padding-bottom: 0; 
-    margin: 0; 
+    min-height: 80vh; 
+    /* The problem may be here: ensure the section below it is NOT floating or improperly positioned. */
+    padding: 100px 0; /* Add padding to give your content breathing room */
+    margin: 0;
     width: 100%;
     position: relative; 
     z-index: 2; 
     overflow-x: hidden;
-
+    /* Remove any background-color from the about-section itself */
 }
+
+/* Pseudo-element for the fixed background and overlay */
 .about-section::before{
     content: ''; 
-    position: absolute;
+    position: absolute; /* Revert to absolute so it scrolls with the section */
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    
+    /* Apply the image and overlay */
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
         url(https://t4.ftcdn.net/jpg/07/58/10/45/360_F_758104584_F6Cxgc5BRoGIs0PKTaiq2lnQOGnkLNlE.jpg);
@@ -278,9 +285,17 @@ header .navbar {
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
-    background-attachment: fixed;
-    z-index: -1;
+    
+    /* This is the feature you want for the parallax effect */
+    background-attachment: fixed; 
+    
+    z-index: -1; /* Must be behind the text */
 }
+
+/* ⚠️ IMPORTANT: If the section below it is still being covered, 
+   ensure that section has a background color and a high z-index (z-index: 3;) 
+   to sit on top of the fixed element.
+*/
 
 .about-section .section-content {
     display: flex;
@@ -1477,3 +1492,4 @@ header .navbar {
         background-position: 10% center; 
     }
 }
+
