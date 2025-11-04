@@ -350,12 +350,10 @@ header .navbar {
 .menu-section {
     color: var(--white-color);
     background: rgb(207, 199, 199);
-    padding: 50px 0 100px;
+    
 }
 
-.menu-section .section-title {
-    margin-bottom: 10px;
-}
+
 
 /* -------------------------------------------------------------- */
 /* SECTION TITLE — TIGHTER SPACING */
@@ -366,6 +364,10 @@ header .navbar {
   font-weight: 700;
   text-align: center;
   color: #1b1b2f;
+}
+
+#menu .section-title {
+    margin-bottom: -80px !important; 
 }
 
 /* -------------------------------------------------------------- */
@@ -415,7 +417,7 @@ header .navbar {
 .search-container {
   order: -1;
   flex: 1 1 120px;
-  min-width: 100px;
+  min-width: 60px;
   max-width: 160px;
 }
 
@@ -535,181 +537,309 @@ header .navbar {
     box-shadow: 0 0 0 2px rgba(27, 27, 47, 0.2);
 }
 
-/* GAME GRID – BIGGER CARDS */
-#menu-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 0 15px;
-    max-width: var(--site-max-width);
-    margin: 0 auto;
+/* SEARCH BAR — SHRINKS, STAYS IN CENTER FLOW */
+.search-container {
+    order: -1;
+    flex: 1 1 120px;
+    min-width: 60px;
+    max-width: 160px;
 }
 
-/* CARD – BIGGER, IMAGE DOMINATES */
-.menu-item {
-    width: 300px;
+.search-input {
+    width: 100%;
+    padding: 9px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    outline: none;
+    background: white;
+    transition: 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #1b1b2f;
+    box-shadow: 0 0 0 3px rgba(27, 27, 47, 0.1);
+}
+
+/* OTHER BUTTONS */
+.category-btn {
+    background: #f0f0f0;
+    color: #1b1b2f;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    min-width: 80px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.category-btn:not([data-category="all"]):hover,
+.category-btn.active:not([data-category="all"]) {
+    background: #96210f;
+    color: white;
+    border-color: #c9321e;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ========= 2 GAMES PER ROW – MOBILE ========= */
+#menu-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 10px;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 600px) and (max-width: 900px) {
+  #menu-list { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* Desktop: 4+ columns */
+@media (min-width: 901px) {
+  #menu-list { 
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    padding: 0 15px;
+  }
+}
+
+/* MOBILE: TIGHT, CENTERED, SWIPEABLE */
+@media (max-width: 600px) {
+    #category-nav {
+        padding: 10px 12px;
+        gap: 10px;
+        justify-content: flex-start;
+        z-index: 999;
+    }
+
+    #category-nav .category-btn[data-category="all"] {
+        padding: 8px 14px !important;
+        font-size: 0.9rem !important;
+        min-width: 95px;
+    }
+
+    .category-btn {
+        padding: 7px 12px;
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+
+    .search-container {
+        /* Set minimum size for the container */
+        min-width: 50px;
+        max-width: 90px;
+        flex: 1 1 50px;
+    }
+
+    .search-input {
+        padding: 5px 7px; /* Reduced padding */
+        font-size: 0.8rem;
+    }
+    
+    /* REINFORCED FIX: Overrides min-width: 250px on mobile */
+    #search-input {
+        min-width: 50px !important; /* ABSOLUTE MINIMUM */
+        max-width: 100%;
+        padding: 5px 7px !important; /* Smallest possible padding */
+        margin-right: 0; 
+    }
+}
+
+/* -------------------------------------------------------------- */
+/* NEW: SEARCH INPUT STYLING (Desktop/Global) */
+/* -------------------------------------------------------------- */
+#search-input {
+    padding: 10px 10px;
+    margin-right: 5px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    color: #1b1b2f;
     background: #fff;
-    padding: 8px;
-    border-radius: 18px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 460px;
+    min-width: 250px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+    height: 45px;
+}
+
+#search-input:focus {
+    border-color: #1b1b2f;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(27, 27, 47, 0.2);
+}
+
+
+/* ========= UNIFORM CARD HEIGHT + 2 PER ROW ON MOBILE ========= */
+#menu-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 10px;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ALL CARDS — SAME HEIGHT, FLEX LAYOUT */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  height: 100%; /* Fill grid cell */
+  transition: transform 0.2s ease;
+  position: relative;
 }
 
 .menu-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.18);
+  transform: translateY(-4px);
 }
 
-/* IMAGE – TAKES UP MOST SPACE */
-.menu-item img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 12px;
+/* IMAGE — FIXED HEIGHT, FULL WIDTH */
+.menu-item img,
+.bundle-swiper-container img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #f9f9f9;
+  border-radius: 10px 10px 0 0;
+  padding: 6px;
 }
 
-
-
-/* TEXT CONTENT – TIGHTER, CLEAN */
-.menu-item h3 {
-    margin: 0 0 6px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--dark-color);
-    line-height: 1.3;
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.menu-item p:not(.price) {
-    font-size: 0.92rem;
-    color: #555;
-    height: 36px;
-    overflow: hidden;
-    margin: 0 0 10px;
-    line-height: 1.4;
-    text-align: center !important;
-}
-
-.menu-item p.price {
-    font-weight: bold;
-    color: #8b4513;
-    margin: 0 0 12px;
-    font-size: 1.15rem;
-    text-align: center !important;
-}
-
-/* ADD TO CART – SLIGHTLY BIGGER */
-.menu-item .add-to-cart {
-    background: #1b1b2f;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    font-size: 1rem;
-    font-weight: var(--font-weight-medium);
-    align-self: center;
-}
-
-.menu-item .add-to-cart:hover {
-    background: #2a2a44;
-    transform: scale(1.05);
-}
-
-/* PRICE CONTAINER */
-.price-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 8px 0 12px;
-    flex-wrap: wrap;
-}
-
-/* UNIFORM CARD HEIGHT */
-.menu-item {
-  position: relative;
+/* TEXT CONTENT — FLEX GROW */
+.menu-item .card-content {
+  flex: 1;
+  padding: 10px 12px 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 340px;
-  padding-bottom: 12px;
-  overflow: hidden;
-  z-index: 1;
-}
-.menu-item .offer-countdown { min-height: 28px; }
-
-/* STRIKETHROUGH FIX */
-.menu-item span.old-price {
-  text-decoration: line-through !important;
-  color: #cc0000;
-  opacity: 0.7;
-  font-size: 0.9em;
 }
 
-/* RIBBON */
-.offer-ribbon {
-  position: absolute;
-  top: 45px;
-  right: -60px;;
-  background: linear-gradient(45deg, #e74c3c, #41ec4c);
-  color: #fff;
+/* TITLE */
+.menu-item h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
   font-weight: bold;
-  font-size: .75rem;
-  padding: 4px 12px;
-  border-radius: 0 4px 4px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
-  transform: rotate(12deg);
-  z-index: 6;
-}
-
-/* TIMER */
-.offer-countdown {
-  font-family: monospace;
-  font-size: .85rem;
-  color: #e74c3c;
   text-align: center;
-  margin: 4px 0;
-  background: rgba(231,76,60,.08);
-  padding: 4px 8px;
-  border-radius: 6px;
+  color: #1b1b2f;
+  line-height: 1.3;
+  min-height: 38px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* PRICE */
-.price-line {
+/* DESCRIPTION */
+.menu-item p.text-card {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.35;
+  height: 42px;
+  overflow: hidden;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* BUNDLE GAMES LIST */
+.menu-item p.bundle-games {
+  margin: 4px 0 6px;
+  font-size: 0.74rem;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
+
+/* PRICE & TIMER */
+.menu-item .price-line {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin: 6px 0;
   font-weight: bold;
+  font-size: 0.98rem;
 }
-.sale-price { color: #27ae60; }
-.regular-price { color: #333; }
+.menu-item .old-price { text-decoration: line-through; color: #999; font-size: 0.85rem;justify-content: flex; }
+.menu-item .sale-price { color: #27ae60; }
+.menu-item .regular-price { color: #333; }
+.menu-item .bundle-old { color: #999; font-size: 0.82rem; }
+.menu-item .bundle-price { color: #1b1b2f; }
 
-/* RESPONSIVE: 4 → 3 → 2 → 1 */
-@media (max-width: 1300px) {
-    .menu-item { width: calc(33.33% - 14px); max-width: 280px; }
+/* TIMER */
+.menu-item .offer-countdown {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #e74c3c;
+  text-align: center;
+  background: rgba(231,76,60,.08);
+  padding: 2px 6px;
+  border-radius: 5px;
+  margin: 2px 0;
 }
-@media (max-width: 1000px) {
-    .menu-item { width: calc(50% - 10px); }
+
+/* ADD TO CART BUTTON — FIXED HEIGHT */
+.menu-item .add-to-cart {
+  margin: 8px 12px 10px;
+  padding: 9px 12px;
+  background: #1b1b2f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
-@media (max-width: 600px) {
-    .menu-item { 
-        width: 100%; 
-        max-width: 300px; 
-        padding: 14px;
-    }
-    .menu-item img { height: 200px; }
-    #menu-list { padding: 0 10px; gap: 16px; }
+.menu-item .add-to-cart:hover {
+  background: #2a2a44;
+  transform: scale(1.03);
+}
+
+.bundle-ribbon { background: #f39c12; }
+
+
+/* RESPONSIVE */
+@media (min-width: 600px) and (max-width: 900px) {
+  #menu-list { grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding: 0 12px; }
+  .menu-item img { height: 160px; }
+}
+@media (min-width: 901px) {
+  #menu-list { 
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    padding: 0 15px;
+  }
+  .menu-item img { height: 180px; }
+}
+@media (max-width: 380px) {
+  #menu-list { gap: 10px; padding: 0 8px; }
+  .menu-item img { height: 120px; }
+  .menu-item h3 { font-size: 0.9rem; }
 }
 
 /* GLUE: Cart locked to far-right */
@@ -882,6 +1012,105 @@ header .navbar {
     transform: rotate(45deg);
     z-index: 2;
 }
+
+/* ============================================= */
+/* MOBILE: 2 GAMES SIDE-BY-SIDE (SMALL PHONES)   */
+/* ============================================= */
+@media (max-width: 600px) {
+  /* Grid: 2 columns, equal width */
+  #menu-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* 2 equal columns */
+    gap: 14px !important;
+    padding: 0 10px !important;
+    justify-content: center;
+  }
+
+  /* Card: Fit in 2-column grid, keep proportions */
+  .menu-item {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: unset !important;
+    margin: 0 !important;
+    height: 360px !important;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Image: Preserve original quality & aspect ratio */
+  .menu-item img {
+    width: 100%;
+    height: 160px !important; /* Fixed height for consistency */
+    object-fit: contain !important; /* Show full image, no crop */
+    object-position: center;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 8px;
+    image-rendering: -webkit-optimize-contrast; /* Crisp on retina */
+  }
+
+  /* Text: Adjust for smaller cards */
+  .menu-item h3 {
+    font-size: 1rem !important;
+    margin: 8px 0 4px !important;
+    line-height: 1.2;
+  }
+
+  .menu-item p:not(.price) {
+    font-size: 0.8rem;
+    height: 32px;
+    margin: 0 0 6px;
+  }
+
+  .menu-item p.price {
+    font-size: 1rem;
+    margin: 0 0 8px;
+  }
+
+  .menu-item .add-to-cart {
+    padding: 8px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Bundle images (swiper or single) */
+  .bundle-swiper img,
+  .single-image {
+    height: 140px !important;
+    object-fit: contain !important;
+    padding: 6px;
+    background: #fff;
+  }
+}
+
+/* Extra small phones: Still 2 columns, tighter */
+@media (max-width: 380px) {
+  #menu-list {
+    gap: 10px !important;
+    padding: 0 8px !important;
+  }
+
+  .menu-item img,
+  .bundle-swiper img,
+  .single-image {
+    height: 130px !important;
+  }
+
+  .menu-item {
+    padding: 8px;
+  }
+
+  .menu-item h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .menu-item .add-to-cart {
+    padding: 7px 10px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+
 
 
 
@@ -1159,41 +1388,101 @@ header .navbar {
     background: transparent;
 }
 
-/*Footer*/
+/* =============================== */
+/* 1. GENERAL FOOTER STYLES (Desktop/Tablet) */
+/* =============================== */
+
 .footer-section {
-    padding: 20px 0;
-    background: var(--dark-color);
+    /* Set a strong background color (e.g., dark brown/maroon, based on your design) */
+    background-color: #3f1e1e; 
+    color: #ffffff;
+    padding: 30px 0; /* Vertical padding */
+    width: 100%;
+    /* Ensure the footer is fully visible and not under any fixed element */
+    position: relative; 
+    z-index: 10;
 }
 
+/* Container for arranging the elements */
 .footer-section .section-content {
+    /* Use Flexbox to align content (copyright, social, policies) */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Stack vertically by default */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text content */
+    gap: 15px; /* Vertical spacing between the main elements */
 }
 
-.footer-section :where(.copyright-text, .social-link, .policy-link) {
-    color: var(--white-color);
-    transition: 0.2s ease;
+/* =============================== */
+/* 2. COPYRIGHT AND POLICY TEXT */
+/* =============================== */
+
+.copyright-text,
+.policy-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7); /* Slightly muted text color */
+    margin: 0;
 }
 
-.footer-section .social-link-list {
+.policy-link {
+    color: #ffffff; /* White links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.policy-link:hover {
+    color: #ff9900; /* Hover color (e.g., your button orange/yellow) */
+}
+
+.separator {
+    /* Color the diamond */
+    color: #ff9900; 
+    /* Add slight horizontal spacing */
+    margin: 0 8px; 
+    /* Ensure the diamond is vertically centered with the text */
+    line-height: 1;
+    /* Increase font size slightly if needed for prominence */
+    font-size: 1.1em; 
+}
+
+/* =============================== */
+/* 3. SOCIAL LINKS */
+/* =============================== */
+
+.social-link-list {
     display: flex;
-    gap: 25px;
+    justify-content: center; /* Center the icons */
+    gap: 15px; /* Spacing between icons */
+    padding: 10px 0;
 }
 
-.footer-section .social-link-list .social-link {
-    font-size: var(--font-size-1);
+.social-link {
+    color: #ffffff;
+    font-size: 1.5rem; /* Icon size */
+    transition: color 0.3s ease;
 }
 
-.footer-section .social-link-list .social-link:hover,
-.footer-section .policy-text .policy-link:hover {
-    color: var(--secondary-color);
+.social-link:hover {
+    color: #ff9900; /* Icon hover color */
 }
 
-.footer-section .policy-text .separator {
-    margin: 0 5px;
-    color: var(--white-color);
+
+/* =============================== */
+/* 4. RESPONSIVENESS (Mobile stacking for Policy Links) */
+/* =============================== */
+
+@media (max-width: 600px) {
+    /* On small screens, keep the main layout stacked, but ensure policy links stack too */
+    
+    /* Policy links stack vertically on small screens */
+    .policy-link {
+        display:contents; 
+        text-align: center;
+        margin: 5px 0; /* Vertical spacing */
+    }
 }
+
+
 
 /* Responsive media query code for max width 1024px*/
 @media screen and (max-width: 1024px) {
@@ -1332,6 +1621,7 @@ header .navbar {
         flex: 1 1 100%;
         max-width: 300px;
     }
+
 
     .menu-section .menu-list .menu-item, 
     .gallery-section .gallery-list .gallery-item {
@@ -1493,3 +1783,165 @@ header .navbar {
     }
 }
 
+/* --- MODAL CSS --- */
+.modal {
+    display: none; /* Hidden by default by JS */
+    position: fixed; 
+    z-index: 1000; /* High z-index to ensure it sits on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); /* Dark, translucent background */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto; /* Centered with a 5% margin from the top */
+    padding: 30px;
+    width: 90%; 
+    max-width: 900px; /* Great for product details */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    /* Basic animation for a smooth entrance */
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+}
+
+/* Modal Content Layout (for large screens) */
+.modal-flex-container {
+    display: flex;
+
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.modal-media-section {
+    flex: 1 1 40%; /* Image section */
+}
+
+.modal-details-section {
+    flex: 1 1 50%; /* Text section */
+}
+
+.modal-main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.modal-title {
+    font-size: 2.2em;
+    color: #333;
+    margin-top: 0;
+}
+
+.modal-categories {
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.modal-subtitle {
+    font-size: 1.4em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+/* Price Styling - Match your original card styles */
+.modal-price-line {
+    font-size: 1.8em;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.modal-old-price, .modal-bundle-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.7em;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+.modal-sale-price, .modal-bundle-price {
+    color: #d9534f; /* Highlighted sale price */
+    font-size: 1em;
+}
+
+.modal-add-to-cart-btn {
+    /* Style this to be prominent! */
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #5cb85c; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.modal-add-to-cart-btn:hover {
+    background-color: #4cae4c;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10px auto;
+        padding: 20px;
+    }
+    .modal-flex-container {
+        flex-direction: column-reverse; /* Stack image and details */
+    }
+    .modal-media-section {
+        flex: 1 1 100%; 
+    }
+    .modal-title {
+        font-size: 1.8em;
+    }
+}
+/* MODAL BUNDLE SWIPER – full-size, 100 % working */
+.modal .modal-bundle-swiper {
+    height: 380px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.modal .modal-bundle-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+}
+.modal .modal-bundle-swiper .swiper-slide img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
