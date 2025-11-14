@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+<!DOCTYPE html> 
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +10,7 @@
   <style>
     :root {
       --primary-color: #e94560;     /* Pink accent */
-      --secondary-color: #1f4068;   /* Deep navy */
+      --secondary-color: #fab813;   /* Deep navy */
       --bg-light: #f5f6fa;
       --bg-dark: #1b1b2f;
       --text-dark: #2c3e50;
@@ -222,6 +224,13 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    td:first-child {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      max-width: 40%; /* Adjust as needed to force wrapping while keeping table balanced */
+    }
   </style>
 </head>
 <body>
@@ -332,19 +341,23 @@ function removeItem(index) {
       window.location.href = "index.html"; // CHANGE TO YOUR MAIN PAGE
     }
 
-    function checkout() {
-      if (cart.length === 0) {
-        alert("Your cart is empty");
-        return;
-      }
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      const message = encodeURIComponent(
-        "Hello! Here’s my order from D&M GamesShop:\n\n" +
-        cart.map(i => `• ${i.name} × ${i.quantity} = KSH ${i.price * i.quantity}`).join("\n") +
-        `\n\nTotal: KSH ${total}\nThank you!`
-      );
-      window.open(`https://wa.me/254797577567?text=${message}`, "_blank");
-    }
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // CORRECTED: Use one set of backticks for the entire message string
+  const message = encodeURIComponent(
+    `Hello! Here’s my order from D&M GamesShop:\n\n` +
+    cart.map(i => `• ${i.name} × ${i.quantity} = KSH ${i.price * i.quantity}`).join("\n") +
+    `\n\nTotal: KSH ${total}\nThank you!` // Removed the extra double quote (")
+  );
+
+  window.open(`https://wa.me/254797577567?text=${message}`, "_blank");
+}
 
     // Auto-render on load
     document.addEventListener("DOMContentLoaded", renderCart);
