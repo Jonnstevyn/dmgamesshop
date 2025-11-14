@@ -782,7 +782,7 @@ header .navbar {
 .menu-item .add-to-cart {
   margin: 8px 12px 10px;
   padding: 9px 12px;
-  background: #1b1b2f;
+  background: #f39c12;
   color: white;
   border: none;
   border-radius: 8px;
@@ -792,7 +792,7 @@ header .navbar {
   transition: 0.2s;
 }
 .menu-item .add-to-cart:hover {
-  background: #2a2a44;
+  background: #e67e22;
   transform: scale(1.03);
 }
 
@@ -1922,3 +1922,4 @@ header .navbar {
     max-width: 100%;
     object-fit: contain;
 }
+
