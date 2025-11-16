@@ -348,79 +348,77 @@ Play, Laugh, Learn, Repeat</p>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <!-- ✅ GOOGLE SHEETS + CART SYSTEM -->
-    
+  <script>
+/* --------------------------------------------------------------
+GAMES + BUNDLES STORE – STATUS + TIMER AUTO-EXPIRE + DELIVERY INCENTIVE
+-------------------------------------------------------------- */
+const sheetId = "1UF8PNCYVoIO35LnDJVii0_qpzrUdxo-5tPD3lW3GP7o";
+const gamesApiUrl  = `https://opensheet.elk.sh/${sheetId}/1`;
+const howToPlayApiUrl = `https://opensheet.elk.sh/${sheetId}/3`;
+const bundlesApiUrl = `https://opensheet.elk.sh/${sheetId}/4`;
+const deliveryApiUrl = `https://opensheet.elk.sh/${sheetId}/5`; // NEW: Sheet 5
 
-    <script>
-        /* --------------------------------------------------------------
-    GAMES + BUNDLES STORE – STATUS + TIMER AUTO-EXPIRE + DELIVERY INCENTIVE
-    -------------------------------------------------------------- */
-    const sheetId = "1UF8PNCYVoIO35LnDJVii0_qpzrUdxo-5tPD3lW3GP7o";
-    const gamesApiUrl  = `https://opensheet.elk.sh/${sheetId}/1`;
-    const howToPlayApiUrl = `https://opensheet.elk.sh/${sheetId}/3`;
-    const bundlesApiUrl = `https://opensheet.elk.sh/${sheetId}/4`;
-    const deliveryApiUrl = `https://opensheet.elk.sh/${sheetId}/5`; // NEW: Sheet 5
+let cart    = JSON.parse(localStorage.getItem("cart")) || [];
+let allGames    = [];
+let allBundles  = [];
+let activeTimers    = {};
+let currentCategory = 'all';
+let howToPlaySwiper = null;
+let deliveryText = ''; // NEW: Delivery incentive text
 
-    let cart    = JSON.parse(localStorage.getItem("cart")) || [];
-    let allGames    = [];
-    let allBundles  = [];
-    let activeTimers    = {};
-    let currentCategory = 'all';
-    let howToPlaySwiper = null;
-    let deliveryText = ''; // NEW: Delivery incentive text
-
-    /* ---------- UTILITY FUNCTIONS (NEW: Truncate Text) ---------- */
-    function truncateText(text, maxLength) {
-        if (!text) return '';
-        if (text.length > maxLength) {
-            return text.substring(0, maxLength).trim() + '...';
-        }
-        return text;
+/* ---------- UTILITY FUNCTIONS (NEW: Truncate Text) ---------- */
+function truncateText(text, maxLength) {
+    if (!text) return '';
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength).trim() + '...';
     }
+    return text;
+}
 
-    /* ---------- 1. LOAD GAMES + BUNDLES + DELIVERY ---------- */
-    Promise.all([
+/* ---------- 1. LOAD GAMES + BUNDLES + DELIVERY ---------- */
+Promise.all([
     fetch(`${gamesApiUrl}?cb=${Date.now()}`, { cache: 'no-store' }).then(r => r.json()),
     fetch(`${bundlesApiUrl}?cb=${Date.now()}`, { cache: 'no-store' }).then(r => r.ok ? r.json() : []),
     fetch(`${deliveryApiUrl}?cb=${Date.now()}`, { cache: 'no-store' }).then(r => r.ok ? r.json() : [])
-    ])
-    .then(([gamesData, bundlesData, deliveryData]) => {
+])
+.then(([gamesData, bundlesData, deliveryData]) => {
     allGames = gamesData.filter(g => g.name && g.name.trim()); // Filter out empty/invalid rows
 
     /* ---- FILTER + ENHANCE BUNDLES ---- */
     allBundles = bundlesData
         .filter(bundle => bundle.name && bundle.name.trim()) // Filter out empty/invalid rows
         .filter(bundle => {
-        const status = (bundle.status || '').toLowerCase().trim();
-        const offerEnds = bundle['offer ends'];
+            const status = (bundle.status || '').toLowerCase().trim();
+            const offerEnds = bundle['offer ends'];
 
-        if (status === 'inactive') return false;
-        if (status === 'active' || !status) {
-            if (!offerEnds) return true;
-            const normalized = offerEnds.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
-            const endTime = new Date(normalized).getTime();
-            return endTime > Date.now();
-        }
-        return false;
+            if (status === 'inactive') return false;
+            if (status === 'active' || !status) {
+                if (!offerEnds) return true;
+                const normalized = offerEnds.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
+                const endTime = new Date(normalized).getTime();
+                return endTime > Date.now();
+            }
+            return false;
         })
         .map(bundle => {
-        const gameNames = bundle.games.split(',').map(s => s.trim());
-        let total = 0;
-        const images = [];
+            const gameNames = bundle.games.split(',').map(s => s.trim());
+            let total = 0;
+            const images = [];
 
-        gameNames.forEach(name => {
-            const game = allGames.find(g => g.name === name);
-            if (game) {
-            total += parseFloat(game.price) || 0;
-            if (game.image) images.push(game.image);
-            }
-        });
+            gameNames.forEach(name => {
+                const game = allGames.find(g => g.name === name);
+                if (game) {
+                    total += parseFloat(game.price) || 0;
+                    if (game.image) images.push(game.image);
+                }
+            });
 
-        const savings    = total - parseFloat(bundle.bundle_price);
-        const ribbonText = savings > 0 ? `SAVE KSH ${savings}!` : 'SPECIAL PRICE';
-        // Ensure bundle image is first, followed by included game images
-        const allImages  = bundle.image ? [bundle.image, ...images] : images;
+            const savings    = total - parseFloat(bundle.bundle_price);
+            const ribbonText = savings > 0 ? `SAVE KSH ${savings}!` : 'SPECIAL PRICE';
+            // Ensure bundle image is first, followed by included game images
+            const allImages  = bundle.image ? [bundle.image, ...images] : images;
 
-        return { ...bundle, total_price: total, savings, ribbonText, allImages };
+            return { ...bundle, total_price: total, savings, ribbonText, allImages };
         });
 
     // NEW: LOAD ALL ACTIVE DELIVERY LINES
@@ -433,25 +431,25 @@ Play, Laugh, Learn, Repeat</p>
     const incentiveElement = document.querySelector('.delivery-incentive');
     if (incentiveElement) {
         if (activeDeliveries.length > 0) {
-        incentiveElement.innerHTML = '<strong>' + activeDeliveries.join('<br>') + '</strong>';
-        incentiveElement.style.display = 'block';
+            incentiveElement.innerHTML = '<strong>' + activeDeliveries.join('<br>') + '</strong>';
+            incentiveElement.style.display = 'block';
         } else {
-        incentiveElement.innerHTML = '';
-        incentiveElement.style.display = 'none';
+            incentiveElement.innerHTML = '';
+            incentiveElement.style.display = 'none';
         }
     }
 
     initializeStore();
     loadHowToPlaySection();
-    })
-    .catch(err => {
+})
+.catch(err => {
     console.error("Load error:", err);
     document.getElementById("menu-list").innerHTML =
         "<p style='color:red;text-align:center;'>Failed to load store.</p>";
-    });
+});
 
-    /* ---------- 2. BUILD NAV + FIRST DISPLAY ---------- */
-    function initializeStore() {
+/* ---------- 2. BUILD NAV + FIRST DISPLAY ---------- */
+function initializeStore() {
     const nav = document.getElementById("category-nav");
 
     const rawGameCats = allGames.flatMap(g => 
@@ -466,60 +464,94 @@ Play, Laugh, Learn, Repeat</p>
         categories.unshift('Popular Offers');
     }
 
-    nav.innerHTML = `<input type="text" id="search-input" placeholder="Search for a game..." />`;
+    /* ---- INSERT SEARCH INPUT FIRST (now with responsive sizing + JS cap) ---- */
+    nav.innerHTML = `<input type="text" id="search-input" placeholder="Search..." class="search-input" style="max-width:250px; min-width:120px; flex:0 0 auto;" />`;
+
+    /* ---- BUILD CATEGORY BUTTONS ---- */
     let navHtml = `<button class="category-btn active" data-category="all">All Games</button>`;
     navHtml += categories.map(cat => `<button class="category-btn" data-category="${cat}">${cat}</button>`).join('');
     nav.insertAdjacentHTML('beforeend', navHtml);
+
+    /* ---- APPLY MOBILE-SPECIFIC WIDTH CAP AFTER DOM INSERT ---- */
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        const applyMobileCap = () => {
+            if (window.innerWidth <= 768) { // Mobile/tablet breakpoint
+                searchInput.style.width = '120px';
+                searchInput.style.flex = '0 0 120px';
+            } else {
+                searchInput.style.width = '';
+                searchInput.style.flex = '';
+            }
+        };
+        applyMobileCap();
+        window.addEventListener('resize', applyMobileCap);
+    }
+
+    /* ---- DYNAMIC justify-content for overflow handling ---- */
+    const categoryNav = document.getElementById('category-nav');
+    const checkOverflow = () => {
+        // Run after the browser paints the buttons
+        if (categoryNav.scrollWidth > categoryNav.clientWidth) {
+            categoryNav.style.justifyContent = 'flex-start';
+        } else {
+            categoryNav.style.justifyContent = ''; // revert to CSS default (center)
+        }
+    };
+    // Tiny delay ensures widths are calculated
+    setTimeout(checkOverflow, 0);
+    // Re-check on window resize
+    window.addEventListener('resize', checkOverflow);
 
     displayItems();
 
     document.querySelectorAll(".category-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-        currentCategory = btn.dataset.category;
-        document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        document.getElementById('search-input').value = '';
-        filterAndDisplayItems();
+            currentCategory = btn.dataset.category;
+            document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            document.getElementById('search-input').value = '';
+            filterAndDisplayItems();
         });
     });
 
     document.getElementById('search-input')?.addEventListener('input', filterAndDisplayItems);
-    }
+}
 
-    /* ---------- 3. HOW-TO-PLAY SECTION ---------- */
-    function loadHowToPlaySection() {
+/* ---------- 3. HOW-TO-PLAY SECTION ---------- */
+function loadHowToPlaySection() {
     fetch(`${howToPlayApiUrl}?cb=${Date.now()}`, { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
-        const container = document.getElementById("how-to-play-list");
-        if (!container) return;
+            const container = document.getElementById("how-to-play-list");
+            if (!container) return;
 
-        const valid = data.filter(g => g.name && g.name.trim() && g.rules?.trim()); // Filter out empty/invalid rows
-        if (!valid.length) {
-            container.innerHTML = `<div class="swiper-slide"><p>No rules yet.</p></div>`;
-            return;
-        }
+            const valid = data.filter(g => g.name && g.name.trim() && g.rules?.trim()); // Filter out empty/invalid rows
+            if (!valid.length) {
+                container.innerHTML = `<div class="swiper-slide"><p>No rules yet.</p></div>`;
+                return;
+            }
 
-        container.innerHTML = valid.map(g => `
-            <div class="swiper-slide">
-            <div class="testimonial">
-                <img src="${g.image||''}" alt="${g.name}" class="user-image"
-                    onerror="this.src='https://via.placeholder.com/160?text=Game'">
-                <h3 class="name">${g.name}</h3>
-                <i class="feedback">${g.rules}</i>
-            </div>
-            </div>`).join('');
+            container.innerHTML = valid.map(g => `
+                <div class="swiper-slide">
+                <div class="testimonial">
+                    <img src="${g.image||''}" alt="${g.name}" class="user-image"
+                        onerror="this.src='https://via.placeholder.com/160?text=Game'">
+                    <h3 class="name">${g.name}</h3>
+                    <i class="feedback">${g.rules}</i>
+                </div>
+                </div>`).join('');
 
-        if (howToPlaySwiper) setTimeout(() => howToPlaySwiper.update(), 100);
+            if (howToPlaySwiper) setTimeout(() => howToPlaySwiper.update(), 100);
         })
         .catch(() => {
-        const c = document.getElementById("how-to-play-list");
-        if (c) c.innerHTML = `<div class="swiper-slide"><p>Unable to load rules.</p></div>`;
+            const c = document.getElementById("how-to-play-list");
+            if (c) c.innerHTML = `<div class="swiper-slide"><p>Unable to load rules.</p></div>`;
         });
-    }
+}
 
-    /* ---------- 4. FILTER + DISPLAY ---------- */
-    function filterAndDisplayItems() {
+/* ---------- 4. FILTER + DISPLAY ---------- */
+function filterAndDisplayItems() {
     const term = (document.getElementById('search-input')?.value||'').toLowerCase();
     let games   = allGames;
     let bundles = allBundles;
@@ -538,10 +570,10 @@ Play, Laugh, Learn, Repeat</p>
     }
 
     displayItems(games, bundles);
-    }
+}
 
-    /* ---------- 5. RENDER CARDS (MODIFIED) ---------- */
-    function displayItems(games = allGames, bundles = allBundles) {
+/* ---------- 5. RENDER CARDS (MODIFIED) ---------- */
+function displayItems(games = allGames, bundles = allBundles) {
     Object.values(activeTimers).forEach(clearInterval);
     activeTimers = {};
 
@@ -559,10 +591,10 @@ Play, Laugh, Learn, Repeat</p>
     initializeOfferTimers();
     initializeBundleSwipers();
     attachItemClickListeners(items); 
-    }
+}
 
-    /* ---------- 6. CARD HTML (MODIFIED: Added Truncation) ---------- */
-    function generateItemCard(item) {
+/* ---------- 6. CARD HTML (MODIFIED: Added Truncation) ---------- */
+function generateItemCard(item) {
     const isBundle = item.type === 'bundle';
     const price    = isBundle ? parseFloat(item.bundle_price)||0 : parseFloat(item.price)||0;
     let effectiveOffer = parseFloat(item['on offer']) || 0;
@@ -609,7 +641,7 @@ Play, Laugh, Learn, Repeat</p>
         const save = Math.round(((price - offer) / price) * 100);
         ribbon = `<div class="offer-ribbon">SALE! -${save}%</div>`;
         if (item['offer ends']) {
-        timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
+            timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
         }
         priceHTML = `<p class="price-line sale-mode"><span class="old-price">KSH ${price}</span> <span class="sale-price">KSH ${offer}</span></p>${timer}`;
     } 
@@ -617,7 +649,7 @@ Play, Laugh, Learn, Repeat</p>
         ribbon = `<div class="bundle-ribbon">${item.ribbonText}</div>`;
         
         if (item['offer ends']) {
-        timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
+            timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
         }
 
         priceHTML = `
@@ -663,219 +695,218 @@ Play, Laugh, Learn, Repeat</p>
             Add to Cart
         </button>
         </div>`;
-    }
+}
 
-    /* ---------- 7. SWIPER FOR BUNDLE IMAGES ---------- */
-    function initializeBundleSwipers() {
+/* ---------- 7. SWIPER FOR BUNDLE IMAGES ---------- */
+function initializeBundleSwipers() {
     document.querySelectorAll('.bundle-swiper').forEach(el => {
         new Swiper(el, {
-        loop: true,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        spaceBetween: 10
+            loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            spaceBetween: 10
         });
     });
-    }
+}
 
-    /* ---------- 8. OFFER TIMERS (AUTO-HIDE BUNDLES) ---------- */
-    function initializeOfferTimers() {
+/* ---------- 8. OFFER TIMERS (AUTO-HIDE BUNDLES) ---------- */
+function initializeOfferTimers() {
     document.querySelectorAll('.offer-countdown').forEach(el => {
         const update = () => {
-        const raw = el.getAttribute('data-end-time');
-        const normalized = raw.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
-        const end = new Date(normalized).getTime();
-        const now = Date.now();
-        const diff = end - now;
+            const raw = el.getAttribute('data-end-time');
+            const normalized = raw.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
+            const end = new Date(normalized).getTime();
+            const now = Date.now();
+            const diff = end - now;
 
-        if (isNaN(end) || diff <= 0) {
-            const card = el.closest('.menu-item');
-            const isBundleCard = card.classList.contains('bundle-card');
+            if (isNaN(end) || diff <= 0) {
+                const card = el.closest('.menu-item');
+                const isBundleCard = card.classList.contains('bundle-card');
 
-            if (isBundleCard) {
-            // AUTO-HIDE EXPIRED BUNDLE
-            card.style.opacity = '0.3';
-            card.style.pointerEvents = 'none';
-            card.querySelector('.add-to-cart').disabled = true;
-            card.querySelector('.add-to-cart').textContent = 'EXPIRED';
-            card.querySelector('.offer-ribbon')?.remove();
-            card.querySelector('.price-line').innerHTML = `
-                <span class="bundle-old">Worth KSH ${card.getAttribute('data-original-price')}</span>
-                <span class="bundle-price">EXPIRED</span>
-            `;
-            // Add big stamp
-            if (!card.querySelector('.expired-stamp')) {
-                const stamp = document.createElement('div');
-                stamp.className = 'expired-stamp';
-                stamp.textContent = 'EXPIRED';
-                card.appendChild(stamp);
+                if (isBundleCard) {
+                    // AUTO-HIDE EXPIRED BUNDLE
+                    card.style.opacity = '0.3';
+                    card.style.pointerEvents = 'none';
+                    card.querySelector('.add-to-cart').disabled = true;
+                    card.querySelector('.add-to-cart').textContent = 'EXPIRED';
+                    card.querySelector('.offer-ribbon')?.remove();
+                    card.querySelector('.price-line').innerHTML = `
+                        <span class="bundle-old">Worth KSH ${card.getAttribute('data-original-price')}</span>
+                        <span class="bundle-price">EXPIRED</span>
+                    `;
+                    // Add big stamp
+                    if (!card.querySelector('.expired-stamp')) {
+                        const stamp = document.createElement('div');
+                        stamp.className = 'expired-stamp';
+                        stamp.textContent = 'EXPIRED';
+                        card.appendChild(stamp);
+                    }
+                } else {
+                    const price = card.getAttribute('data-original-price');
+                    card.querySelector('.offer-ribbon')?.remove();
+                    card.querySelector('.price-line').innerHTML = `<span class="regular-price">KSH ${price}</span>`;
+                    card.querySelector('.add-to-cart').setAttribute('data-price', price);
+                }
+
+                el.remove();
+                clearInterval(id);
+                delete activeTimers[id];
+                return;
             }
-            } else {
-            const price = card.getAttribute('data-original-price');
-            card.querySelector('.offer-ribbon')?.remove();
-            card.querySelector('.price-line').innerHTML = `<span class="regular-price">KSH ${price}</span>`;
-            card.querySelector('.add-to-cart').setAttribute('data-price', price);
-            }
 
-            el.remove();
-            clearInterval(id);
-            delete activeTimers[id];
-            return;
-        }
-
-        const d = Math.floor(diff/86400000);
-        const h = Math.floor((diff%86400000)/3600000);
-        const m = Math.floor((diff%3600000)/60000);
-        const s = Math.floor((diff%60000)/1000);
-        let str = d>0 ? `${d}d ` : '';
-        str += `${h.toString().padStart(2,'0')}h:${m.toString().padStart(2,'0')}m:${s.toString().padStart(2,'0')}s`;
-        el.querySelector('.timer-display').textContent = str;
+            const d = Math.floor(diff/86400000);
+            const h = Math.floor((diff%86400000)/3600000);
+            const m = Math.floor((diff%3600000)/60000);
+            const s = Math.floor((diff%60000)/1000);
+            let str = d>0 ? `${d}d ` : '';
+            str += `${h.toString().padStart(2,'0')}h:${m.toString().padStart(2,'0')}m:${s.toString().padStart(2,'0')}s`;
+            el.querySelector('.timer-display').textContent = str;
         };
         const id = setInterval(update,1000);
         update();
         activeTimers[id] = id;
     });
-    }
+}
 
-    /* ---------- 9. CART ---------- */
-    function attachCartListeners() {
+/* ---------- 9. CART ---------- */
+function attachCartListeners() {
     document.querySelectorAll(".add-to-cart").forEach(btn => {
         btn.onclick = () => {
-        if (btn.disabled) return;
-        const name = btn.dataset.name;
-        const price = parseFloat(btn.dataset.price);
-        const type  = btn.dataset.type;
-        const existing = cart.find(i => i.name === name);
-        if (existing) existing.quantity++;
-        else cart.push({name, price, quantity:1, type});
-        localStorage.setItem("cart", JSON.stringify(cart));
-        btn.textContent = "Added!";
-        setTimeout(() => btn.textContent = "Add to Cart", 1500);
-        updateCartBadge();
+            if (btn.disabled) return;
+            const name = btn.dataset.name;
+            const price = parseFloat(btn.dataset.price);
+            const type  = btn.dataset.type;
+            const existing = cart.find(i => i.name === name);
+            if (existing) existing.quantity++;
+            else cart.push({name, price, quantity:1, type});
+            localStorage.setItem("cart", JSON.stringify(cart));
+            btn.textContent = "Added!";
+            setTimeout(() => btn.textContent = "Add to Cart", 1500);
+            updateCartBadge();
         };
     });
-    }
+}
 
-    /* ----------------------------------------------------------------------------------
-    NEW FUNCTIONALITY: GAME DETAIL MODAL
-    ---------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------
+NEW FUNCTIONALITY: GAME DETAIL MODAL
+---------------------------------------------------------------------------------- */
 
-    function attachItemClickListeners(items) {
-        document.querySelectorAll(".menu-item").forEach(card => {
-            card.addEventListener('click', (event) => {
-                // Prevent opening the modal if the "Add to Cart" button was clicked
-                if (event.target.closest('.add-to-cart')) {
-                    return;
-                }
+function attachItemClickListeners(items) {
+    document.querySelectorAll(".menu-item").forEach(card => {
+        card.addEventListener('click', (event) => {
+            // Prevent opening the modal if the "Add to Cart" button was clicked
+            if (event.target.closest('.add-to-cart')) {
+                return;
+            }
 
-                // Get the game name from the card title
-                const itemName = card.querySelector('.product-title')?.textContent.replace(' Bundle', '').trim();
-                const item = items.find(i => i.name === itemName);
+            // Get the game name from the card title
+            const itemName = card.querySelector('.product-title')?.textContent.replace(' Bundle', '').trim();
+            const item = items.find(i => i.name === itemName);
 
-                if (item) {
-                    showDetailModal(item);
-                }
-            });
+            if (item) {
+                showDetailModal(item);
+            }
         });
-    }
+    });
+}
 
-    /* ---------- MODAL HTML (MODIFIED: Swiper structure added) ---------- */
-    function generateDetailModalHTML(item) {
-        const isBundle = item.type === 'bundle';
-        const price = isBundle ? parseFloat(item.bundle_price)||0 : parseFloat(item.price)||0;
-        let effectiveOffer = parseFloat(item['on offer']) || 0;
-        const endTime = item['offer ends']?.trim();
-        if (endTime) {
-            const parts = endTime.split(' ');
-            let datePart = parts[0];
-            let timePart = parts.slice(1).join(' ') || '23:59:59';
-            // Normalize date
-            if (/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
-                // good
-            } else if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(datePart)) {
-                datePart = datePart.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, '$3-$2-$1');
-            } else {
-                effectiveOffer = 0;
-            }
-            // Validate normalized date
-            const testDate = new Date(datePart);
-            if (isNaN(testDate.getTime())) {
-                effectiveOffer = 0;
-            }
-            // Normalize time: ensure HH:MM:SS
-            const timeComponents = timePart.split(':');
-            if (timeComponents.length === 2) {
-                timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:00`;
-            } else if (timeComponents.length === 3) {
-                timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:${timeComponents[2].padStart(2,'0')}`;
-            } else {
-                timePart = '23:59:59';
-            }
-            const isoString = `${datePart}T${timePart}`;
-            const end = new Date(isoString).getTime();
-            if (isNaN(end) || end < Date.now()) {
-                effectiveOffer = 0;
-            }
-        }
-        const offer = isBundle ? 0 : effectiveOffer;
-        const finalPrice = (offer > 0 && offer < price) ? offer : price;
-        const originalPrice = price; 
-
-        let priceHTML = '';
-        
-        if ((offer > 0 && offer < price)) {
-            priceHTML = `<div class="modal-price-line sale-mode"><span class="modal-old-price">KSH ${originalPrice}</span> <span class="modal-sale-price">KSH ${finalPrice}</span> (On Sale!)</div>`;
-        } else if (isBundle) {
-            priceHTML = `<div class="modal-price-line bundle-mode"><span class="modal-bundle-old">Worth KSH ${item.total_price}</span> <span class="modal-bundle-price">Now KSH ${finalPrice}</span></div>`;
+/* ---------- MODAL HTML (MODIFIED: Swiper structure added) ---------- */
+function generateDetailModalHTML(item) {
+    const isBundle = item.type === 'bundle';
+    const price = isBundle ? parseFloat(item.bundle_price)||0 : parseFloat(item.price)||0;
+    let effectiveOffer = parseFloat(item['on offer']) || 0;
+    const endTime = item['offer ends']?.trim();
+    if (endTime) {
+        const parts = endTime.split(' ');
+        let datePart = parts[0];
+        let timePart = parts.slice(1).join(' ') || '23:59:59';
+        // Normalize date
+        if (/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
+            // good
+        } else if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(datePart)) {
+            datePart = datePart.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, '$3-$2-$1');
         } else {
-            priceHTML = `<div class="modal-price-line"><span class="modal-regular-price">KSH ${finalPrice}</span></div>`;
+            effectiveOffer = 0;
         }
+        // Validate normalized date
+        const testDate = new Date(datePart);
+        if (isNaN(testDate.getTime())) {
+            effectiveOffer = 0;
+        }
+        // Normalize time: ensure HH:MM:SS
+        const timeComponents = timePart.split(':');
+        if (timeComponents.length === 2) {
+            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:00`;
+        } else if (timeComponents.length === 3) {
+            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:${timeComponents[2].padStart(2,'0')}`;
+        } else {
+            timePart = '23:59:59';
+        }
+        const isoString = `${datePart}T${timePart}`;
+        const end = new Date(isoString).getTime();
+        if (isNaN(end) || end < Date.now()) {
+            effectiveOffer = 0;
+        }
+    }
+    const offer = isBundle ? 0 : effectiveOffer;
+    const finalPrice = (offer > 0 && offer < price) ? offer : price;
+    const originalPrice = price; 
 
-        const longDescription = item.description || (isBundle ? 'Great value pack!' : 'No detailed description available.');
-        const featuredImage = item.image || 'https://via.placeholder.com/600?text=Game+View';
-
-
-        return `
-            <span class="close-btn">&times;</span>
-            <div class="modal-flex-container">
-                <div class="modal-media-section">
-                    ${isBundle ? `
-                        <div class="bundle-swiper-container">
-                            <div class="swiper bundle-swiper">
-                                <div class="swiper-wrapper">
-                                ${item.allImages.map(img => `
-                                    <div class="swiper-slide">
-                                    <img src="${img}" alt="Bundle game view" class="modal-main-image" onerror="this.src='https://via.placeholder.com/600?text=Game+Image'">
-                                    </div>`).join('')}
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-                    ` : `
-                        <img src="${featuredImage}" alt="${item.name}" class="modal-main-image"
-                            onerror="this.src='https://via.placeholder.com/600?text=${encodeURIComponent(item.name)}'">
-                    `}
-                </div>
-                <div class="modal-details-section">
-                    <h2 class="modal-title">${item.name} ${isBundle ? 'Bundle' : ''}</h2>
-                    <div class="modal-categories">Category: <strong>${item.category || 'N/A'}</strong></div>
-                    
-                    <h3 class="modal-subtitle">Details:</h3>
-                    <p class="modal-description">${longDescription}</p>
-
-                    ${isBundle ? `<p class="modal-includes">This bundle includes: <strong>${item.games}</strong></p>` : ''}
-                    
-                    <div class="modal-price-wrapper">
-                        ${priceHTML}
-                    </div>
-                    
-                    <button class="add-to-cart modal-add-to-cart-btn" data-name="${item.name}" data-price="${finalPrice}" data-type="${item.type}">
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-        `;
+    let priceHTML = '';
+    
+    if ((offer > 0 && offer < price)) {
+        priceHTML = `<div class="modal-price-line sale-mode"><span class="modal-old-price">KSH ${originalPrice}</span> <span class="modal-sale-price">KSH ${finalPrice}</span> (On Sale!)</div>`;
+    } else if (isBundle) {
+        priceHTML = `<div class="modal-price-line bundle-mode"><span class="modal-bundle-old">Worth KSH ${item.total_price}</span> <span class="modal-bundle-price">Now KSH ${finalPrice}</span></div>`;
+    } else {
+        priceHTML = `<div class="modal-price-line"><span class="modal-regular-price">KSH ${finalPrice}</span></div>`;
     }
 
-    function showDetailModal(item) {
+    const longDescription = item.description || (isBundle ? 'Great value pack!' : 'No detailed description available.');
+    const featuredImage = item.image || 'https://via.placeholder.com/600?text=Game+View';
+
+    return `
+        <span class="close-btn">&times;</span>
+        <div class="modal-flex-container">
+            <div class="modal-media-section">
+                ${isBundle ? `
+                    <div class="bundle-swiper-container">
+                        <div class="swiper bundle-swiper">
+                            <div class="swiper-wrapper">
+                            ${item.allImages.map(img => `
+                                <div class="swiper-slide">
+                                <img src="${img}" alt="Bundle game view" class="modal-main-image" onerror="this.src='https://via.placeholder.com/600?text=Game+Image'">
+                                </div>`).join('')}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                ` : `
+                    <img src="${featuredImage}" alt="${item.name}" class="modal-main-image"
+                        onerror="this.src='https://via.placeholder.com/600?text=${encodeURIComponent(item.name)}'">
+                `}
+            </div>
+            <div class="modal-details-section">
+                <h2 class="modal-title">${item.name} ${isBundle ? 'Bundle' : ''}</h2>
+                <div class="modal-categories">Category: <strong>${item.category || 'N/A'}</strong></div>
+                
+                <h3 class="modal-subtitle">Details:</h3>
+                <p class="modal-description">${longDescription}</p>
+
+                ${isBundle ? `<p class="modal-includes">This bundle includes: <strong>${item.games}</strong></p>` : ''}
+                
+                <div class="modal-price-wrapper">
+                    ${priceHTML}
+                </div>
+                
+                <button class="add-to-cart modal-add-to-cart-btn" data-name="${item.name}" data-price="${finalPrice}" data-type="${item.type}">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function showDetailModal(item) {
     const modal = document.getElementById('detail-modal');
     const modalContent = document.getElementById('modal-content');
 
@@ -920,8 +951,6 @@ Play, Laugh, Learn, Repeat</p>
 
     // 5. Re-initialize swiper for bundle images if it's a bundle
     if (item.type === 'bundle') {
-        // Increased delay to 100ms to give the browser more time to render images/modal
-        // This is crucial for Swiper to calculate slide dimensions correctly.
         setTimeout(() => {
             const swiperEl = modalContent.querySelector('.bundle-swiper');
             if (swiperEl) {
@@ -931,15 +960,15 @@ Play, Laugh, Learn, Repeat</p>
                     spaceBetween: 10
                 });
             }
-        }, 100); // 👈 Change applied here
+        }, 100);
     }
-    }
+}
 
-    /* ----------------------------------------------------------------------------------
-    END NEW FUNCTIONALITY
-    ---------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------
+END NEW FUNCTIONALITY
+---------------------------------------------------------------------------------- */
 
-    function updateCartBadge() {
+function updateCartBadge() {
     const badge = document.querySelector('.cart-badge');
     if (!badge) return;
     const total = cart.reduce((s,i)=>s+i.quantity,0);
@@ -948,21 +977,18 @@ Play, Laugh, Learn, Repeat</p>
     badge.classList.remove('pulse');
     void badge.offsetWidth;
     if (total>0) badge.classList.add('pulse');
-    // At the end of updateCartBadge()
     window.dispatchEvent(new Event('storage')); // Force sync
-    }
+}
 
-    /* ---------- 10. GLOBAL EVENTS ---------- */
-    window.addEventListener('storage', e => {
+/* ---------- 10. GLOBAL EVENTS ---------- */
+window.addEventListener('storage', e => {
     if (e.key==='cart') { cart = JSON.parse(e.newValue)||[]; updateCartBadge(); }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
+});
+document.addEventListener('DOMContentLoaded', () => {
     cart = JSON.parse(localStorage.getItem("cart"))||[];
     updateCartBadge();
-    });
-
-
-    </script>
+});
+</script>
 
 
     <!-- ✅ FORMSPREE + GOOGLE SHEETS CONTACT FORM -->
@@ -1023,6 +1049,7 @@ Play, Laugh, Learn, Repeat</p>
     <script src="Mumbi script.js"></script>
   </body>
 </html>
+
 
 
 
