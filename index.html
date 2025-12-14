@@ -1151,11 +1151,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 </script>
 
+    <!-- NEW: FAQ Accordion JavaScript -->
+    <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            const isOpen = answer.style.maxHeight;
+
+            // Close all other answers (accordion style)
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                a.style.maxHeight = null;
+                a.parentElement.classList.remove('open');
+            });
+
+            // Toggle current
+            if (!isOpen) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.parentElement.classList.add('open');
+            }
+        });
+    });
+    </script>
+
 
 
     <script src="Mumbi script.js"></script>
   </body>
 </html>
+
 
 
 
