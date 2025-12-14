@@ -1923,3 +1923,85 @@ header .navbar {
     object-fit: contain;
 }
 
+/* FAQ Section Styling – Relaxed & Calm Version */
+.faq-section { 
+    padding: 100px 0; 
+    background: #f8f9fa; /* Very light warm-gray, feels airy */
+}
+
+.faq-section .section-title { 
+    color: #2d3748; /* Soft dark gray instead of strong red – calm and readable */
+    font-weight: 600;
+}
+
+.faq-container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+
+.faq-accordion { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; /* Slightly more breathing room */
+}
+
+.faq-item { 
+    background: white; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); /* Softer, more diffused shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.09);
+}
+
+.faq-question {
+    width: 100%; 
+    padding: 20px 24px; 
+    text-align: left; 
+    font-size: 1.1rem; 
+    font-weight: 600;
+    background: #f4b932; /* Slightly deeper on hover – inviting, not aggressive */
+    color: #190f0f; 
+    border: none; 
+    cursor: pointer;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    transition: background 0.35s ease, color 0.35s ease;
+}
+
+.faq-question:hover { 
+    background: #f7ad02; /* Slightly deeper on hover – inviting, not aggressive */
+    color: #190f0f;
+}
+
+.faq-question i { 
+    color: #080a0c; /* Pleasant mid-blue for the arrow */
+    transition: transform 0.35s ease; 
+}
+
+.faq-item.open .faq-question i { 
+    transform: rotate(180deg); 
+}
+
+/* Answer panel – clean and comfortable to read */
+.faq-answer { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.45s ease; 
+    background: #fdfdfd; /* Almost pure white with a warm hint */
+}
+
+.faq-answer .answer-text { 
+    padding: 28px 24px; 
+    color: #4a5568; /* Relaxed medium gray – easy on the eyes */
+    line-height: 1.8; 
+    font-size: 1.02rem;
+}
+
+
+
