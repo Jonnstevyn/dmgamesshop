@@ -190,7 +190,7 @@ header .navbar {
     max-width: 800px;
 }
 
-.hero-section h1, .hero-section h3, .hero-section p {
+.hero-section h2, .hero-section h3, .hero-section p {
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
@@ -2002,6 +2002,7 @@ header .navbar {
     line-height: 1.8; 
     font-size: 1.02rem;
 }
+
 
 
 
