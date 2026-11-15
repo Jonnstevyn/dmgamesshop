@@ -1,5 +1,4 @@
-/*Importing Google fonts*/
-@import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+/* Fonts are loaded by <link> tags in index.html (faster than @import) */
 
 *{
 margin: 0;
@@ -2003,7 +2002,12 @@ header .navbar {
     font-size: 1.02rem;
 }
 
-
-
-
-
+/* ===== Accessibility fixes from the Lighthouse report (Nov 2026): text contrast + tap size ===== */
+.nav-cart-btn { color: #3b141c; }
+.menu-item .add-to-cart,
+.menu-item .add-to-cart:hover { color: #3b141c; }
+.offer-ribbon { background: #c2185b; }
+.menu-item .old-price { color: #6b6b6b; }
+.menu-item .sale-price { color: #1e7e4a; }
+.social-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+.footer-section a:not(.social-link) { display: inline-block; padding: 7px 4px; }

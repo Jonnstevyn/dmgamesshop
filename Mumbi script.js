@@ -24,6 +24,7 @@ const swiper = new Swiper('.slider-wrapper', {
     centeredSlides: true,
     slidesPerView: 'auto',           // REQUIRED FOR SWIPE + CENTER
     watchSlidesProgress: true,
+    a11y: { slideRole: 'listitem' },
 
     // Enable touch
     touchRatio: 1,
@@ -61,6 +62,5 @@ const swiper = new Swiper('.slider-wrapper', {
     }
 });
 
-
-
-  
+// The slider's CSS now loads without blocking the page: recalculate sizes once everything has loaded
+window.addEventListener('load', () => swiper.update());

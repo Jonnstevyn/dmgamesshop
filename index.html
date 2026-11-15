@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
         <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-30F3B2WYG0"></script>
+    <script>
+      window.addEventListener('load', function () { setTimeout(function () {
+        var g = document.createElement('script'); g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=G-30F3B2WYG0'; document.head.appendChild(g);
+      }, 1500); });
+    </script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -14,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Games Shop | Best Board Games, Puzzles and Card Games in Kenya</title>
     <meta name="description" content="Best board games Kenya shop in Nairobi CBD. Buy affordable card games, chess, monopoly, scrabble, ludo, jenga, puzzles & party games with prices and fast delivery across Kenya.">
-    <meta name="author" content="D&M GamesShop">
+    <link rel="canonical" href="https://dmgamesshop.co.ke/">
+    <meta name="author" content="D&amp;M GamesShop">
     <meta name="robots" content="index, follow">
    
     <!-- Favicons -->
@@ -22,37 +28,44 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <!-- Speed: connect early to the hosts the page needs; non-critical CSS no longer blocks the first paint -->
+    <link rel="preconnect" href="https://ubi4x431.api.sanity.io" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"></noscript>
+    <style>.fas,.far,.fab{display:inline-block;min-width:1em;}</style>
    
     <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
     <link rel="preload" href="ACCEPTEDUPDATE.css" as="style">
    
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
     <link rel="stylesheet" href="ACCEPTEDUPDATE.css">
    
     <!-- Open Graph for Facebook/Social Sharing -->
     <meta property="og:title" content="DM Game Shop | Board Games Kenya">
     <meta property="og:description" content="Affordable board games, card games, chess prices in Kenya, monopoly, puzzles & more. Fast delivery from Nairobi CBD shop.">
-    <meta property="og:image" content="https://i.imghippo.com/files/BMa1646WGY.png">
+    <meta property="og:image" content="https://dmgamesshop.co.ke/LOGO.png">
     <meta property="og:url" content="https://dmgamesshop.co.ke">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DM Games Shop Kenya">
    
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DM Game Shop | Board Games Kenya">
     <meta name="twitter:description" content="Buy board games, card games, and puzzles in Kenya. Affordable fun with fast delivery!">
-    <meta name="twitter:image" content="https://i.imghippo.com/files/BMa1646WGY.png">
+    <meta name="twitter:image" content="https://dmgamesshop.co.ke/LOGO.png">
     <meta name="google-site-verification" content="zsLrwNXpxLLQKL7LFyfTYJzVruP0P4sOhTgwMVPurQc" />
-        <!-- Refund Policy -->
-    <meta name="description" content="View our Refund Policy. We accept returns within 48 hours for unused items in their original condition.">
-        <!-- Privacy Policy Policy -->
-    <meta name="description" content="Read the Privacy Policy for DM Game Shop Kenya. We are committed to protecting your privacy and personal data.">
-   
+
     <!-- Meta Pixel Code -->
     <script>
+        window.addEventListener('load', function () { setTimeout(function () {
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -63,30 +76,30 @@
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1895926141326690');
         fbq('track', 'PageView');
+    
+        }, 1500); });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1895926141326690&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
    
-    <!-- Schema.org -->
+    <!-- Schema.org: store details -->
     <script type="application/ld+json">
-        <!-- Schema.org -->
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ToyStore",
+  "@id": "https://dmgamesshop.co.ke/#store",
   "name": "DM Game Shop Kenya",
   "url": "https://dmgamesshop.co.ke",
-  "logo": "https://i.imghippo.com/files/BMa1646WGY.png",
+  "logo": "https://dmgamesshop.co.ke/LOGO.png",
   "image": [
-    "https://i.imghippo.com/files/rNo8058zsg.jpg"
-    <!-- Add more real store images here if available -->
+    "https://dmgamesshop.co.ke/LOGO.png"
   ],
   "description": "Premium board game shop in Nairobi, Kenya. We sell Chess, Monopoly, Scrabble, puzzles, and party games with fast delivery.",
   "telephone": "+254797577567",
   "email": "d.mgamesshop2024@gmail.com",
-  "priceRange": "KSh 500 - KSh 7500",
+  "priceRange": "KSh 100 - KSh 3500",
   "currenciesAccepted": "KES",
   "paymentAccepted": "Cash, M-Pesa",
   "address": {
@@ -122,7 +135,6 @@
       "closes": "18:00"
     }
   ],
-  "openingHours": "Mo-Fr 08:30-18:00, Sa 09:00-18:00",
   "sameAs": [
     "https://www.facebook.com/share/1DU4HfvChm/",
     "https://www.instagram.com/dm_gamesshop_kenya?igsh=MTN4aWUza3psZW4yOQ==",
@@ -132,43 +144,13 @@
   "areaServed": {
     "@type": "Country",
     "name": "Kenya"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "120",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Games and Puzzles Catalog",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Product",
-          "name": "Monopoly Board Game",
-          "image": "https://your-site.com/monopoly.jpg",
-          "description": "Classic Monopoly board game.",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "KES",
-            "price": "2500",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-      }
-      <!-- Add more popular products here for better richness -->
-    ]
   }
 }
-</script>
     </script>
   
         <!-- TikTok Pixel Code Start -->
     <script>
+        window.addEventListener('load', function () { setTimeout(function () {
         !function (w, d, t) {
           w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
         var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
@@ -178,6 +160,8 @@
           ttq.load('D4BK9MJC77U2TCIL1KPG');
           ttq.page();
         }(window, document, 'ttq');
+    
+        }, 1500); });
     </script>
         <!-- TikTok Pixel Code End -->
         <script type="application/ld+json">
@@ -233,7 +217,7 @@
         <!--Header /Navbar-->
         <header>
             <nav class="navbar section-content">
-                <a href="https://i.imghippo.com/files/BMa1646WGY.png" class="nav-logo">
+                <a href="/" class="nav-logo">
                     <h2 class="logo-text">D&M GamesShop</h2>
                 </a>
                
@@ -257,6 +241,9 @@
                         <li class="nav-item">
                             <a href="#contact" class="nav-link">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/blog/" class="nav-link">Blog</a>
+                        </li>
                          <!-- NEW: FAQ navigation link -->
                         <li class="nav-item">
                              <a href="#faq" class="nav-link">FAQ</a>
@@ -266,7 +253,7 @@
                 <div class="nav-cart-sticky">
                     <a href="CART2.html" class="nav-cart-btn">
                         Cart <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-badge">3</span>
+                        <span class="cart-badge hidden">0</span>
                     </a>
                 </div>
                    
@@ -281,7 +268,7 @@
                 <div class="section-content">
                     <div class="hero-details">
                         <h1 class="title">Discover, Play, Connect</h1>
-                        <h3 class="subtitle">Your Ultimate Board and Card Games Hub!</h3>
+                        <h2 class="subtitle">Your Ultimate Board and Card Games Hub!</h2>
                         <p class="description">Find your next favorite game and join a community of passionate gamers <br> <br> Whether you're a casual player or a hardcore strategist, we've got something for you!</p>
                         <div class="buttons">
                             <a href="#menu" target="_parent" class="button order-now">Order Now</a>
@@ -297,6 +284,55 @@
            <!--Menu Section-->
             <section class="menu-section" id="menu">
                 <h2 class="section-title">Game Shelf</h2>
+                <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    justify-content: center;
+                    padding: 0.4rem 1rem 1.4rem;
+                    max-width: 900px;
+                    margin: 0 auto;
+                ">
+                    <a href="/chess.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-chess" style="font-size:.75rem;"></i> Chess
+                    </a>
+                    <a href="/scrabble.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-spell-check" style="font-size:.75rem;"></i> Scrabble
+                    </a>
+                    <a href="/jenga.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-layer-group" style="font-size:.75rem;"></i> Jenga
+                    </a>
+                    <a href="/ludo.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-dice" style="font-size:.75rem;"></i> Ludo
+                    </a>
+                    <a href="/monopoly.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-building" style="font-size:.75rem;"></i> Monopoly
+                    </a>
+                    <a href="/sequence-board-game.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-chess-board" style="font-size:.75rem;"></i> Sequence
+                    </a>
+                    <a href="/bingo.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-circle-dot" style="font-size:.75rem;"></i> Bingo
+                    </a>
+                    <a href="/dominoes.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-table-cells-large" style="font-size:.75rem;"></i> Dominoes
+                    </a>
+                    <a href="/card-games.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-clone" style="font-size:.75rem;"></i> Card Games
+                    </a>
+                    <a href="/conversation-card-games.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-comments" style="font-size:.75rem;"></i> Conversation Cards
+                    </a>
+                    <a href="/party-games.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-champagne-glasses" style="font-size:.75rem;"></i> Party Games
+                    </a>
+                    <a href="/puzzles.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-puzzle-piece" style="font-size:.75rem;"></i> Puzzles
+                    </a>
+                    <a href="/kids-learning-toys.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(250,184,19,.1);border:1px solid rgba(250,184,19,.28);color:#553e03;border-radius:100px;padding:5px 15px;font-size:.8rem;font-family:'Poppins',sans-serif;font-weight:600;text-decoration:none;transition:.18s ease;" onmouseover="this.style.background='rgba(250,184,19,.2)'" onmouseout="this.style.background='rgba(250,184,19,.1)'">
+                        <i class="fas fa-shapes" style="font-size:.75rem;"></i> Kids Learning
+                    </a>
+                </div>
                 <div id="category-nav"></div>
                 <div id="menu-list"></div>
                
@@ -306,7 +342,7 @@
             <section class="about-section" id="about">
                 <div class="section-content">
                     <div class="about-image-wrapper">
-                        <img src="https://www.boardgameauthority.com/wp-content/uploads/2018/06/board-games-popular.jpg" alt="Assorted popular board games at DM Game Shop" class="about-image">
+                        <img src="https://www.boardgameauthority.com/wp-content/uploads/2018/06/board-games-popular.jpg" alt="Assorted popular board games at DM Game Shop" class="about-image" loading="lazy" decoding="async">
                     </div>
                     <div class="about-details">
                         <h2 class="section-title" style="color: #E0E0E0;">About Us</h2>
@@ -324,62 +360,13 @@ Play, Laugh, Learn, Repeat</p>
                 </div>
             </section>
             <hr>
-            <!--Testimonials section-->
+<!--Testimonials section-->
             <section class="testimonials-section" id="testimonials">
                 <h2 class="section-title">How To Play</h2>
                 <div class="section-content">
                     <div class="slider-container swiper">
                         <div class="slider-wrapper">
-                            <ul class="testimonials-list swiper-wrapper">
-                                <li class="testimonial swiper-slide">
-                                  <img src="https://img.lakeshorelearning.com/is/image/OCProduction/fg524?wid=800&fmt=jpeg&qlt=85,1&pscan=auto&op_sharpen=0&resMode=sharp2&op_usm=1,0.65,6,0" alt="Dominoes" class="user-image">
-                                    <h3 class="name">Dominoes</h3>
-                                    <i class="feedback">"One player begins by downing(playing the first tile) one of their tiles. This tile starts the line of play, a series of tiles in which adjacent tiles touch with matching values. The players alternately extend the line of play, with one tile at one of its two ends. The game ends when one player wins by playing their last tile, or when the game is blocked because neither player can play."</i>
-                                </li>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://m.media-amazon.com/images/I/71cOd5YI8lL._AC_SL1500_.jpg" alt="Ludo" class="user-image">
-                                    <h3 class="name">Ludo</h3>
-                                    <i class="feedback">
-                                        "Players take turns rolling a single die. To get a piece out of the starting base, a player must roll a six. Pieces move clockwise around the board toward their home column. If a player lands on an opponent's piece, the opponent's piece is sent back to its base. Rolling a six grants the player an extra roll. The first player to move all four of their pieces into the center home triangle wins the game."
-                                    </i>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB8nQVh0qk903GHfTr26Pqse228fEJCnIB6Q&s" alt="Chess" class="user-image">
-                                    <h3 class="name">Chess</h3>
-                                    <i class="feedback">
-                                        "The game is played on an 8x8 board. White moves first, then players alternate turns. Each piece has a unique movement pattern. The goal is to checkmate the opponent's King, meaning the King is under immediate attack (in check) and has no legal way to escape capture. If a player cannot escape checkmate, they lose the game."
-                                    </i>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://m.media-amazon.com/images/I/61kA16Eb0iL._AC_SL1322_.jpg" alt="Bingo" class="user-image">
-                                    <h3 class="name">Bingo</h3>
-                                    <i class="feedback">
-                                        "Each player receives a card with a grid of numbers under the letters B-I-N-G-O, with the center square being a free space. A caller randomly draws and announces letter-number combinations. Players cover the corresponding square on their card. The first player to cover five squares in a row—horizontally, vertically, or diagonally—shouts 'Bingo!' to win the round."
-                                    </i>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://m.media-amazon.com/images/I/819eND5NJlL.jpg" alt="Dos" class="user-image">
-                                    <h3 class="name">Dos</h3>
-                                    <i class="feedback">
-                                        "Players are dealt seven cards and two cards are placed face-up to form a Center Row. On your turn, you play a card from your hand to match a number in the Center Row. You can match with one card or use two cards that add up to the number. The goal is to be the first to play all your cards. When you have two cards remaining, you must shout 'Dos!'"
-                                    </i>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://beautifulrealizations.wordpress.com/wp-content/uploads/2013/02/jenga-1.jpg" alt="Jenga" class="user-image">
-                                    <h3 class="name">Jenga</h3>
-                                    <i class="feedback">
-                                        "The game starts with a tower built of 54 wooden blocks, three per layer, with layers alternated in direction. Players take turns removing a single block from any level below the highest completed level and placing it on top of the tower, completing the current layer before starting a new one. The player who causes the tower to fall loses the game."
-                                    </i>
-                                </li>
-                                <li class="testimonial swiper-slide">
-                                    <img src="https://media.istockphoto.com/id/487051045/photo/scrabble-board-game.jpg?s=612x612&w=0&k=20&c=cob1XOSywaD9c7HyuXGWEIqcEnpyJoHTD5kILc4cwcQ=" alt="Scrabble" class="user-image">
-                                    <h3 class="name">Scrabble</h3>
-                                    <i class="feedback">
-                                        "Players draw seven letter tiles and take turns forming words crossword-style on the board to score points. The first word must cover the center star square. Subsequent words must use a tile already on the board. Words are scored based on the letter values and premium squares on the board. The player with the highest score when the tiles run out wins."
-                                    </i>
-                                </li>
-                            </ul>
+                            <ul id="how-to-play-list" class="testimonials-list swiper-wrapper"></ul>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-slide-button swiper-button-prev"></div>
                             <div class="swiper-slide-button swiper-button-next"></div>
@@ -441,6 +428,7 @@ Play, Laugh, Learn, Repeat</p>
                   
                 </div>
             </section>
+            
                         <!-- NEW: FAQ SECTION (visible + SEO-optimized) -->
         <section class="faq-section" id="faq">
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -485,7 +473,27 @@ Play, Laugh, Learn, Repeat</p>
             <!--Footer section-->
             <footer class="footer-section">
                 <div class="section-content">
-                    <p class="copyright-text">© 2025 D n M Gameshop</p>
+                    <div style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 0.4rem 1rem;
+                        margin-bottom: 0.9rem;
+                        font-size: .78rem;
+                        font-family: 'Poppins', sans-serif;
+                    ">
+                        <a href="/blog/" style="color:#fab813;font-weight:700;text-decoration:none;">Blog</a>
+                        <a href="/blog/top-10-board-games-kenya.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Top 10 Games Kenya</a>
+                        <a href="/blog/chess-price-kenya.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Chess Prices Kenya</a>
+                        <a href="/blog/family-game-night-nairobi.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Family Game Night</a>
+                        <a href="/blog/best-gifts-under-2000-kenya.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Gift Ideas Kenya</a>
+                        <a href="/blog/monopoly-price-kenya.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Monopoly Price Kenya</a>
+                        <a href="/blog/couples-family-card-games-kenya.html" style="color:#d9cfcf;text-decoration:none;transition:.15s;" onmouseover="this.style.color='#fab813'" onmouseout="this.style.color='#d9cfcf'">Couples Card Games</a>
+                    </div>
+                    <p class="copyright-text">
+                        &copy; <span id="copy-year"></span> D&amp;M GamesShop
+                        <script>document.getElementById('copy-year').textContent = new Date().getFullYear();</script>
+                    </p>
                     <div class="social-link-list">
                          <div class="social-link-list">
                             <a href="https://www.facebook.com/share/1DU4HfvChm/" target="_blank" rel="noopener" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -510,578 +518,373 @@ Play, Laugh, Learn, Repeat</p>
         <!--Linking Swiper Script-->
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <!-- ✅ GOOGLE SHEETS + CART SYSTEM (FIXED VERSION) -->
-        <script>
-/* --------------------------------------------------------------
-GAMES + BUNDLES STORE – STATUS + TIMER AUTO-EXPIRE + DELIVERY INCENTIVE
+         
+<script>
+    /* --------------------------------------------------------------
+   DM GAMES SHOP – SANITY CMS POWERED STORE
 -------------------------------------------------------------- */
-const sheetId = "1UF8PNCYVoIO35LnDJVii0_qpzrUdxo-5tPD3lW3GP7o";
-const gamesApiUrl = `https://opensheet.elk.sh/${sheetId}/1`;
-const howToPlayApiUrl = `https://opensheet.elk.sh/${sheetId}/3`;
-const bundlesApiUrl = `https://opensheet.elk.sh/${sheetId}/4`;
-const deliveryApiUrl = `https://opensheet.elk.sh/${sheetId}/5`; // NEW: Sheet 5
+const SANITY_PROJECT_ID = 'ubi4x431';
+const SANITY_DATASET = 'production';
+const SANITY_API = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/query/${SANITY_DATASET}`;
+
+async function sanityFetch(query) {
+  const url = `${SANITY_API}?query=${encodeURIComponent(query)}`;
+  const res = await fetch(url);
+  const json = await res.json();
+  return json.result || [];
+}
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let allGames = [];
 let allBundles = [];
 let activeTimers = {};
 let currentCategory = 'all';
-let howToPlaySwiper = null;
-let deliveryText = ''; // NEW: Delivery incentive text
-/* ---------- UTILITY FUNCTIONS (NEW: Truncate Text) ---------- */
+
+/* ---------- UTILITY ---------- */
+function smallImg(u) { return (u || '').replace(/\/fit-in\/(?:500x500|680x680)\//, '/fit-in/360x360/'); }
 function truncateText(text, maxLength) {
-    if (!text) return '';
-    if (text.length > maxLength) {
-        return text.substring(0, maxLength).trim() + '...';
-    }
-    return text;
+  if (!text) return '';
+  return text.length > maxLength ? text.substring(0, maxLength).trim() + '...' : text;
 }
-/* ---------- 1. LOAD GAMES + BUNDLES + DELIVERY ---------- */
-// FIXED: Removed ?cb=... to prevent 400 Bad Request from opensheet
+
+/* ---------- 1. LOAD ALL DATA FROM SANITY ---------- */
 Promise.all([
-    fetch(gamesApiUrl, { cache: 'no-store' }).then(r => r.json()),
-    fetch(bundlesApiUrl, { cache: 'no-store' }).then(r => r.ok ? r.json() : []),
-    fetch(deliveryApiUrl, { cache: 'no-store' }).then(r => r.ok ? r.json() : [])
+  sanityFetch(`*[_type == "product" && status == "active"]{
+    name, "image": imageUrl, description, price, "on offer": onOffer,
+    "offer ends": offerEnds, category, status, "slug": slug.current
+  }`),
+  sanityFetch(`*[_type == "delivery" && active == true]{ text }`),
+  sanityFetch(`*[_type == "howToPlay"]{ name, image, rules }`)
 ])
-.then(([gamesData, bundlesData, deliveryData]) => {
-    allGames = gamesData.filter(g => g.name && g.name.trim()); // Filter out empty/invalid rows
-    /* ---- FILTER + ENHANCE BUNDLES ---- */
-    allBundles = bundlesData
-        .filter(bundle => bundle.name && bundle.name.trim()) // Filter out empty/invalid rows
-        .filter(bundle => {
-            const status = (bundle.status || '').toLowerCase().trim();
-            const offerEnds = bundle['offer ends'];
-            if (status === 'inactive') return false;
-            if (status === 'active' || !status) {
-                if (!offerEnds) return true;
-                const normalized = offerEnds.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
-                const endTime = new Date(normalized).getTime();
-                return endTime > Date.now();
-            }
-            return false;
-        })
-        .map(bundle => {
-            const gameNames = bundle.games.split(',').map(s => s.trim());
-            let total = 0;
-            const images = [];
-            gameNames.forEach(name => {
-                const game = allGames.find(g => g.name === name);
-                if (game) {
-                    total += parseFloat(game.price) || 0;
-                    if (game.image) images.push(game.image);
-                }
-            });
-            const savings = total - parseFloat(bundle.bundle_price);
-            const ribbonText = savings > 0 ? `SAVE KSH ${savings}!` : 'SPECIAL PRICE';
-            // Ensure bundle image is first, followed by included game images
-            const allImages = bundle.image ? [bundle.image, ...images] : images;
-            return { ...bundle, total_price: total, savings, ribbonText, allImages };
-        });
-    // NEW: LOAD ALL ACTIVE DELIVERY LINES
-    const activeDeliveries = deliveryData
-        .filter(d => d.text && d.text.trim()) // Filter out empty/invalid rows
-        .filter(d => (d.active || '').toLowerCase() === 'true')
-        .map(d => d.text.trim())
-        .filter(text => text);
-    const incentiveElement = document.querySelector('.delivery-incentive');
-    if (incentiveElement) {
-        if (activeDeliveries.length > 0) {
-            incentiveElement.innerHTML = '<strong>' + activeDeliveries.join('<br>') + '</strong>';
-            incentiveElement.style.display = 'block';
-        } else {
-            incentiveElement.innerHTML = '';
-            incentiveElement.style.display = 'none';
-        }
+.then(([gamesData, deliveryData, howToPlayData]) => {
+  allGames = gamesData.filter(g => g.name && g.name.trim());
+  allBundles = [];
+
+  /* ---- DELIVERY / HERO MESSAGES ---- */
+  const incentiveElement = document.querySelector('.delivery-incentive');
+  if (incentiveElement) {
+    if (deliveryData.length > 0) {
+      incentiveElement.innerHTML = '<strong>' + deliveryData.map(d => d.text).join('<br>') + '</strong>';
+      incentiveElement.style.display = 'block';
+    } else {
+      incentiveElement.style.display = 'none';
     }
-    initializeStore();
-    loadHowToPlaySection();
+  }
+
+  /* ---- HOW TO PLAY SECTION ---- */
+  const container = document.getElementById("how-to-play-list");
+  if (container && howToPlayData.length > 0) {
+  container.innerHTML = howToPlayData
+    .filter(g => g.name && g.rules)
+    .map(g => `
+      <li class="testimonial swiper-slide">
+        <img src="${g.image || ''}" alt="${g.name}" class="user-image" loading="lazy" decoding="async"
+          onerror="this.src='https://via.placeholder.com/160?text=Game'">
+        <h3 class="name">${g.name}</h3>
+        <i class="feedback">${g.rules}</i>
+      </li>`).join('');
+  }
+
+  initializeStore();
 })
 .catch(err => {
-    console.error("Load error:", err);
-    document.getElementById("menu-list").innerHTML =
-        "<p style='color:red;text-align:center;'>Failed to load store.</p>";
+  console.error("Load error:", err);
+  document.getElementById("menu-list").innerHTML =
+    "<p style='color:red;text-align:center;'>Failed to load store. Please refresh.</p>";
 });
-/* ---------- 2. BUILD NAV + FIRST DISPLAY ---------- */
+
+/* ---------- 2. BUILD NAV + DISPLAY ---------- */
 function initializeStore() {
-    const nav = document.getElementById("category-nav");
-    const rawGameCats = allGames.flatMap(g =>
-        (g.category||'').split(',').map(c=>c.trim()).filter(c => c)
-    );
-    let categories = [...new Set(rawGameCats)];
-    categories.sort((a, b) => a.localeCompare(b));
-    if (allBundles.length > 0) {
-        categories = categories.filter(cat => cat !== 'Bundles' && cat !== 'Popular Offers');
-        categories.unshift('Popular Offers');
-    }
-    /* ---- INSERT SEARCH INPUT FIRST (now with responsive sizing + JS cap) ---- */
-    nav.innerHTML = `<input type="text" id="search-input" placeholder="Search..." class="search-input" style="max-width:250px; min-width:120px; flex:0 0 auto;" />`;
-    /* ---- BUILD CATEGORY BUTTONS ---- */
-    let navHtml = `<button class="category-btn active" data-category="all">All Games</button>`;
-    navHtml += categories.map(cat => `<button class="category-btn" data-category="${cat}">${cat}</button>`).join('');
-    nav.insertAdjacentHTML('beforeend', navHtml);
-    /* ---- APPLY MOBILE-SPECIFIC WIDTH CAP AFTER DOM INSERT ---- */
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        const applyMobileCap = () => {
-            if (window.innerWidth <= 768) { // Mobile/tablet breakpoint
-                searchInput.style.width = '120px';
-                searchInput.style.flex = '0 0 120px';
-            } else {
-                searchInput.style.width = '';
-                searchInput.style.flex = '';
-            }
-        };
-        applyMobileCap();
-        window.addEventListener('resize', applyMobileCap);
-    }
-    /* ---- DYNAMIC justify-content for overflow handling ---- */
-    const categoryNav = document.getElementById('category-nav');
-    const checkOverflow = () => {
-        // Run after the browser paints the buttons
-        if (categoryNav.scrollWidth > categoryNav.clientWidth) {
-            categoryNav.style.justifyContent = 'flex-start';
-        } else {
-            categoryNav.style.justifyContent = ''; // revert to CSS default (center)
-        }
+  const nav = document.getElementById("category-nav");
+  const rawGameCats = allGames.flatMap(g =>
+    (g.category || '').split(',').map(c => c.trim()).filter(c => c)
+  );
+  let categories = [...new Set(rawGameCats)];
+  categories.sort((a, b) => a.localeCompare(b));
+
+  nav.innerHTML = `<input type="text" id="search-input" placeholder="Search..." class="search-input" style="max-width:250px; min-width:120px; flex:0 0 auto;" />`;
+
+  let navHtml = `<button class="category-btn active" data-category="all">All Games</button>`;
+  navHtml += categories.map(cat => `<button class="category-btn" data-category="${cat}">${cat}</button>`).join('');
+  nav.insertAdjacentHTML('beforeend', navHtml);
+
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    const applyMobileCap = () => {
+      if (window.innerWidth <= 768) {
+        searchInput.style.width = '120px';
+        searchInput.style.flex = '0 0 120px';
+      } else {
+        searchInput.style.width = '';
+        searchInput.style.flex = '';
+      }
     };
-    // Tiny delay ensures widths are calculated
-    setTimeout(checkOverflow, 0);
-    // Re-check on window resize
-    window.addEventListener('resize', checkOverflow);
-    displayItems();
-    document.querySelectorAll(".category-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            currentCategory = btn.dataset.category;
-            document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            document.getElementById('search-input').value = '';
-            filterAndDisplayItems();
-        });
+    applyMobileCap();
+    window.addEventListener('resize', applyMobileCap);
+  }
+
+  const categoryNav = document.getElementById('category-nav');
+  const checkOverflow = () => {
+    categoryNav.style.justifyContent = categoryNav.scrollWidth > categoryNav.clientWidth ? 'flex-start' : '';
+  };
+  setTimeout(checkOverflow, 0);
+  window.addEventListener('resize', checkOverflow);
+
+  displayItems();
+
+  document.querySelectorAll(".category-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentCategory = btn.dataset.category;
+      document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById('search-input').value = '';
+      filterAndDisplayItems();
     });
-    document.getElementById('search-input')?.addEventListener('input', filterAndDisplayItems);
+  });
+
+  document.getElementById('search-input')?.addEventListener('input', filterAndDisplayItems);
 }
-/* ---------- 3. HOW-TO-PLAY SECTION ---------- */
-function loadHowToPlaySection() {
-    fetch(howToPlayApiUrl, { cache: 'no-store' })  // Also fixed here - no ?cb=
-        .then(r => r.json())
-        .then(data => {
-            const container = document.getElementById("how-to-play-list");
-            if (!container) return;
-            const valid = data.filter(g => g.name && g.name.trim() && g.rules?.trim()); // Filter out empty/invalid rows
-            if (!valid.length) {
-                container.innerHTML = `<div class="swiper-slide"><p>No rules yet.</p></div>`;
-                return;
-            }
-            container.innerHTML = valid.map(g => `
-                <div class="swiper-slide">
-                <div class="testimonial">
-                    <img src="${g.image||''}" alt="${g.name}" class="user-image"
-                        onerror="this.src='https://via.placeholder.com/160?text=Game'">
-                    <h3 class="name">${g.name}</h3>
-                    <i class="feedback">${g.rules}</i>
-                </div>
-                </div>`).join('');
-            if (howToPlaySwiper) setTimeout(() => howToPlaySwiper.update(), 100);
-        })
-        .catch(() => {
-            const c = document.getElementById("how-to-play-list");
-            if (c) c.innerHTML = `<div class="swiper-slide"><p>Unable to load rules.</p></div>`;
-        });
-}
-/* ---------- 4. FILTER + DISPLAY ---------- */
+
+/* ---------- 3. FILTER + DISPLAY ---------- */
 function filterAndDisplayItems() {
-    const term = (document.getElementById('search-input')?.value||'').toLowerCase();
-    let games = allGames;
-    let bundles = allBundles;
-    if (currentCategory !== "all") {
-        games = games.filter(g => (g.category||'').split(',').map(c=>c.trim()).includes(currentCategory));
-        bundles = currentCategory === 'Popular Offers' ? allBundles
-                : allBundles.filter(b => (b.category||'').includes(currentCategory));
-    }
-    if (term) {
-        games = games.filter(g => g.name.toLowerCase().includes(term) || (g.description||'').toLowerCase().includes(term));
-        bundles = bundles.filter(b => b.name.toLowerCase().includes(term) || (b.games||'').toLowerCase().includes(term));
-        document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-        document.querySelector('[data-category="all"]')?.classList.add("active");
-    }
-    displayItems(games, bundles);
+  const term = (document.getElementById('search-input')?.value || '').toLowerCase();
+  let games = allGames;
+
+  if (currentCategory !== "all") {
+    games = games.filter(g =>
+      (g.category || '').split(',').map(c => c.trim()).includes(currentCategory)
+    );
+  }
+
+  if (term) {
+    games = games.filter(g =>
+      g.name.toLowerCase().includes(term) || (g.description || '').toLowerCase().includes(term)
+    );
+    document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+    document.querySelector('[data-category="all"]')?.classList.add("active");
+  }
+
+  displayItems(games);
 }
-/* ---------- 5. RENDER CARDS (MODIFIED) ---------- */
-function displayItems(games = allGames, bundles = allBundles) {
-    Object.values(activeTimers).forEach(clearInterval);
-    activeTimers = {};
-    const menu = document.getElementById("menu-list");
-    const items = [
-        ...games.map(g => ({...g, type:'game'})),
-        ...bundles.map(b => ({...b, type:'bundle'}))
-    ];
-    menu.innerHTML = items.length
-        ? items.map(generateItemCard).join('')
-        : `<p style="text-align:center;color:#777;">No items found.</p>`;
-    attachCartListeners();
-    initializeOfferTimers();
-    initializeBundleSwipers();
-    attachItemClickListeners(items);
+
+/* ---------- 4. RENDER CARDS ---------- */
+function displayItems(games = allGames) {
+  Object.values(activeTimers).forEach(clearInterval);
+  activeTimers = {};
+
+  const menu = document.getElementById("menu-list");
+  const items = games.map(g => ({ ...g, type: 'game' }));
+
+  menu.innerHTML = items.length
+    ? items.map(generateItemCard).join('')
+    : `<p style="text-align:center;color:#777;">No items found.</p>`;
+
+  attachCartListeners();
+  initializeOfferTimers();
+  attachItemClickListeners(items);
 }
-/* ---------- 6. CARD HTML (MODIFIED: Added Truncation) ---------- */
+
+/* ---------- 5. CARD HTML ---------- */
 function generateItemCard(item) {
-    const isBundle = item.type === 'bundle';
-    const price = isBundle ? parseFloat(item.bundle_price)||0 : parseFloat(item.price)||0;
-    let effectiveOffer = parseFloat(item['on offer']) || 0;
-    const endTime = item['offer ends']?.trim();
+  const price = parseFloat(item.price) || 0;
+  let effectiveOffer = parseFloat(item['on offer']) || 0;
+  const endTime = item['offer ends']?.trim();
+
+  if (endTime) {
+    const end = new Date(endTime).getTime();
+    if (isNaN(end) || end < Date.now()) effectiveOffer = 0;
+  }
+
+  const hasOffer = effectiveOffer > 0 && effectiveOffer < price;
+  const finalPrice = hasOffer ? effectiveOffer : price;
+
+  let ribbon = '', priceHTML = '', timer = '';
+
+  if (hasOffer) {
+    const save = Math.round(((price - effectiveOffer) / price) * 100);
+    ribbon = `<div class="offer-ribbon">SALE! -${save}%</div>`;
     if (endTime) {
-        const parts = endTime.split(' ');
-        let datePart = parts[0];
-        let timePart = parts.slice(1).join(' ') || '23:59:59';
-        // Normalize date
-        if (/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
-            // good
-        } else if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(datePart)) {
-            datePart = datePart.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, '$3-$2-$1');
-        } else {
-            effectiveOffer = 0;
-        }
-        // Validate normalized date
-        const testDate = new Date(datePart);
-        if (isNaN(testDate.getTime())) {
-            effectiveOffer = 0;
-        }
-        // Normalize time: ensure HH:MM:SS
-        const timeComponents = timePart.split(':');
-        if (timeComponents.length === 2) {
-            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:00`;
-        } else if (timeComponents.length === 3) {
-            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:${timeComponents[2].padStart(2,'0')}`;
-        } else {
-            timePart = '23:59:59';
-        }
-        const isoString = `${datePart}T${timePart}`;
-        const end = new Date(isoString).getTime();
-        if (isNaN(end) || end < Date.now()) {
-            effectiveOffer = 0;
-        }
+      timer = `<div class="offer-countdown" data-end-time="${endTime}">Ends in: <span class="timer-display">...</span></div>`;
     }
-    const offer = isBundle ? 0 : effectiveOffer;
-    const hasOffer = offer > 0 && offer < price;
-    const finalPrice = hasOffer ? offer : price;
-    let ribbon = '', priceHTML = '', timer = '';
-    if (hasOffer) {
-        const save = Math.round(((price - offer) / price) * 100);
-        ribbon = `<div class="offer-ribbon">SALE! -${save}%</div>`;
-        if (item['offer ends']) {
-            timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
-        }
-        priceHTML = `<p class="price-line sale-mode"><span class="old-price">KSH ${price}</span> <span class="sale-price">KSH ${offer}</span></p>${timer}`;
-    }
-    else if (isBundle) {
-        ribbon = `<div class="bundle-ribbon">${item.ribbonText}</div>`;
-       
-        if (item['offer ends']) {
-            timer = `<div class="offer-countdown" data-end-time="${item['offer ends']}">Ends in: <span class="timer-display">...</span></div>`;
-        }
-        priceHTML = `
-        <p class="price-line bundle-mode">
-            <span class="bundle-old">Worth KSH ${item.total_price}</span>
-            <span class="bundle-price">Now KSH ${price}</span>
-        </p>
-        ${timer}`;
-    }
-    else {
-        priceHTML = `<p class="price-line"><span class="regular-price">KSH ${price}</span></p>`;
-    }
-    const firstCat = (item.category || (isBundle ? 'Popular Offers' : 'All')).split(',')[0].trim() || 'All';
-    // IMPLEMENT ELLIPSIS FOR CARD DESCRIPTION
-    const truncatedDescription = truncateText(item.description || (isBundle ? 'Great value pack!' : 'No description.'), 100);
-    return `
-        <div class="menu-item fade-in ${isBundle ? 'bundle-card' : ''}" data-category="${firstCat}" data-original-price="${price}">
-        ${ribbon}
-        ${isBundle ? `
-            <div class="bundle-swiper-container">
-            <div class="swiper bundle-swiper">
-                <div class="swiper-wrapper">
-                ${item.allImages.map(img => `
-                    <div class="swiper-slide">
-                    <img src="${img}" alt="Bundle game" onerror="this.src='https://via.placeholder.com/300?text=Game'">
-                    </div>`).join('')}
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-            </div>
-        ` : `
-            <img src="${item.image||''}" alt="${item.name}" class="single-image"
-                onerror="this.src='https://via.placeholder.com/300?text=${encodeURIComponent(item.name)}'">
-        `}
-        <h3 class="product-title">${item.name} ${isBundle ? 'Bundle' : ''}</h3>
-        ${isBundle ? `<p class="bundle-games">Includes: ${item.games}</p>` : ''}
-        <p class="text-card">${truncatedDescription}</p>
-        ${priceHTML}
-        <button class="add-to-cart" data-name="${item.name}" data-price="${finalPrice}" data-type="${item.type}">
-            Add to Cart
-        </button>
-        </div>`;
+    priceHTML = `<p class="price-line sale-mode"><span class="old-price">KSH ${price}</span> <span class="sale-price">KSH ${effectiveOffer}</span></p>${timer}`;
+  } else {
+    priceHTML = `<p class="price-line"><span class="regular-price">KSH ${price}</span></p>`;
+  }
+
+  const firstCat = (item.category || 'All').split(',')[0].trim() || 'All';
+  const truncatedDescription = truncateText(item.description || 'No description.', 100);
+
+  return `
+    <div class="menu-item fade-in" data-category="${firstCat}" data-original-price="${price}">
+      ${ribbon}
+      <img src="${smallImg(item.image)}" data-orig="${item.image || ''}" alt="${item.name}" class="single-image" loading="lazy" decoding="async"
+        onerror="if(this.dataset.orig&&this.src!==this.dataset.orig){this.src=this.dataset.orig}else{this.onerror=null;this.src='https://via.placeholder.com/300?text=${encodeURIComponent(item.name)}'}">
+      <h3 class="product-title">${item.name}</h3>
+      <p class="text-card">${truncatedDescription}</p>
+      ${priceHTML}
+      <button class="add-to-cart" data-name="${item.name}" data-price="${finalPrice}" data-type="game">
+        Add to Cart
+      </button>
+    </div>`;
 }
-/* ---------- 7. SWIPER FOR BUNDLE IMAGES ---------- */
-function initializeBundleSwipers() {
-    document.querySelectorAll('.bundle-swiper').forEach(el => {
-        new Swiper(el, {
-            loop: true,
-            pagination: { el: '.swiper-pagination', clickable: true },
-            spaceBetween: 10
-        });
-    });
-}
-/* ---------- 8. OFFER TIMERS (AUTO-HIDE BUNDLES) ---------- */
+
+/* ---------- 6. OFFER TIMERS ---------- */
 function initializeOfferTimers() {
-    document.querySelectorAll('.offer-countdown').forEach(el => {
-        const update = () => {
-            const raw = el.getAttribute('data-end-time');
-            const normalized = raw.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3-$2-$1');
-            const end = new Date(normalized).getTime();
-            const now = Date.now();
-            const diff = end - now;
-            if (isNaN(end) || diff <= 0) {
-                const card = el.closest('.menu-item');
-                const isBundleCard = card.classList.contains('bundle-card');
-                if (isBundleCard) {
-                    // AUTO-HIDE EXPIRED BUNDLE
-                    card.style.opacity = '0.3';
-                    card.style.pointerEvents = 'none';
-                    card.querySelector('.add-to-cart').disabled = true;
-                    card.querySelector('.add-to-cart').textContent = 'EXPIRED';
-                    card.querySelector('.offer-ribbon')?.remove();
-                    card.querySelector('.price-line').innerHTML = `
-                        <span class="bundle-old">Worth KSH ${card.getAttribute('data-original-price')}</span>
-                        <span class="bundle-price">EXPIRED</span>
-                    `;
-                    // Add big stamp
-                    if (!card.querySelector('.expired-stamp')) {
-                        const stamp = document.createElement('div');
-                        stamp.className = 'expired-stamp';
-                        stamp.textContent = 'EXPIRED';
-                        card.appendChild(stamp);
-                    }
-                } else {
-                    const price = card.getAttribute('data-original-price');
-                    card.querySelector('.offer-ribbon')?.remove();
-                    card.querySelector('.price-line').innerHTML = `<span class="regular-price">KSH ${price}</span>`;
-                    card.querySelector('.add-to-cart').setAttribute('data-price', price);
-                }
-                el.remove();
-                clearInterval(id);
-                delete activeTimers[id];
-                return;
-            }
-            const d = Math.floor(diff/86400000);
-            const h = Math.floor((diff%86400000)/3600000);
-            const m = Math.floor((diff%3600000)/60000);
-            const s = Math.floor((diff%60000)/1000);
-            let str = d>0 ? `${d}d ` : '';
-            str += `${h.toString().padStart(2,'0')}h:${m.toString().padStart(2,'0')}m:${s.toString().padStart(2,'0')}s`;
-            el.querySelector('.timer-display').textContent = str;
-        };
-        const id = setInterval(update,1000);
-        update();
-        activeTimers[id] = id;
-    });
+  document.querySelectorAll('.offer-countdown').forEach(el => {
+    const update = () => {
+      const end = new Date(el.getAttribute('data-end-time')).getTime();
+      const diff = end - Date.now();
+
+      if (isNaN(end) || diff <= 0) {
+        const card = el.closest('.menu-item');
+        const price = card.getAttribute('data-original-price');
+        card.querySelector('.offer-ribbon')?.remove();
+        card.querySelector('.price-line').innerHTML = `<span class="regular-price">KSH ${price}</span>`;
+        card.querySelector('.add-to-cart').setAttribute('data-price', price);
+        el.remove();
+        clearInterval(id);
+        delete activeTimers[id];
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      let str = d > 0 ? `${d}d ` : '';
+      str += `${String(h).padStart(2,'0')}h:${String(m).padStart(2,'0')}m:${String(s).padStart(2,'0')}s`;
+      el.querySelector('.timer-display').textContent = str;
+    };
+
+    const id = setInterval(update, 1000);
+    update();
+    activeTimers[id] = id;
+  });
 }
-/* ---------- 9. CART ---------- */
+
+/* ---------- 7. CART ---------- */
 function attachCartListeners() {
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-        btn.onclick = () => {
-            if (btn.disabled) return;
-            const name = btn.dataset.name;
-            const price = parseFloat(btn.dataset.price);
-            const type = btn.dataset.type;
-            const existing = cart.find(i => i.name === name);
-            if (existing) existing.quantity++;
-            else cart.push({name, price, quantity:1, type});
-            localStorage.setItem("cart", JSON.stringify(cart));
-            btn.textContent = "Added!";
-            setTimeout(() => btn.textContent = "Add to Cart", 1500);
-            updateCartBadge();
-        };
-    });
+  document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.onclick = () => {
+      if (btn.disabled) return;
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+      const type = btn.dataset.type;
+      const existing = cart.find(i => i.name === name);
+      if (existing) existing.quantity++;
+      else cart.push({ name, price, quantity: 1, type });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      btn.textContent = "Added!";
+      setTimeout(() => btn.textContent = "Add to Cart", 1500);
+      updateCartBadge();
+    };
+  });
 }
-/* ----------------------------------------------------------------------------------
-NEW FUNCTIONALITY: GAME DETAIL MODAL
----------------------------------------------------------------------------------- */
+
+/* ---------- 8. ITEM DETAIL MODAL ---------- */
 function attachItemClickListeners(items) {
-    document.querySelectorAll(".menu-item").forEach(card => {
-        card.addEventListener('click', (event) => {
-            // Prevent opening the modal if the "Add to Cart" button was clicked
-            if (event.target.closest('.add-to-cart')) {
-                return;
-            }
-            // Get the game name from the card title
-            const itemName = card.querySelector('.product-title')?.textContent.replace(' Bundle', '').trim();
-            const item = items.find(i => i.name === itemName);
-            if (item) {
-                showDetailModal(item);
-            }
-        });
+  document.querySelectorAll(".menu-item").forEach(card => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('.add-to-cart')) return;
+      const itemName = card.querySelector('.product-title')?.textContent.trim();
+      const item = items.find(i => i.name === itemName);
+      if (item) showDetailModal(item);
     });
+  });
 }
-/* ---------- MODAL HTML (MODIFIED: Swiper structure added) ---------- */
+
 function generateDetailModalHTML(item) {
-    const isBundle = item.type === 'bundle';
-    const price = isBundle ? parseFloat(item.bundle_price)||0 : parseFloat(item.price)||0;
-    let effectiveOffer = parseFloat(item['on offer']) || 0;
-    const endTime = item['offer ends']?.trim();
-    if (endTime) {
-        const parts = endTime.split(' ');
-        let datePart = parts[0];
-        let timePart = parts.slice(1).join(' ') || '23:59:59';
-        // Normalize date
-        if (/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
-            // good
-        } else if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(datePart)) {
-            datePart = datePart.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, '$3-$2-$1');
-        } else {
-            effectiveOffer = 0;
-        }
-        // Validate normalized date
-        const testDate = new Date(datePart);
-        if (isNaN(testDate.getTime())) {
-            effectiveOffer = 0;
-        }
-        // Normalize time: ensure HH:MM:SS
-        const timeComponents = timePart.split(':');
-        if (timeComponents.length === 2) {
-            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:00`;
-        } else if (timeComponents.length === 3) {
-            timePart = `${timeComponents[0].padStart(2,'0')}:${timeComponents[1].padStart(2,'0')}:${timeComponents[2].padStart(2,'0')}`;
-        } else {
-            timePart = '23:59:59';
-        }
-        const isoString = `${datePart}T${timePart}`;
-        const end = new Date(isoString).getTime();
-        if (isNaN(end) || end < Date.now()) {
-            effectiveOffer = 0;
-        }
-    }
-    const offer = isBundle ? 0 : effectiveOffer;
-    const finalPrice = (offer > 0 && offer < price) ? offer : price;
-    const originalPrice = price;
-    let priceHTML = '';
-   
-    if ((offer > 0 && offer < price)) {
-        priceHTML = `<div class="modal-price-line sale-mode"><span class="modal-old-price">KSH ${originalPrice}</span> <span class="modal-sale-price">KSH ${finalPrice}</span> (On Sale!)</div>`;
-    } else if (isBundle) {
-        priceHTML = `<div class="modal-price-line bundle-mode"><span class="modal-bundle-old">Worth KSH ${item.total_price}</span> <span class="modal-bundle-price">Now KSH ${finalPrice}</span></div>`;
-    } else {
-        priceHTML = `<div class="modal-price-line"><span class="modal-regular-price">KSH ${finalPrice}</span></div>`;
-    }
-    const longDescription = item.description || (isBundle ? 'Great value pack!' : 'No detailed description available.');
-    const featuredImage = item.image || 'https://via.placeholder.com/600?text=Game+View';
-    return `
-        <span class="close-btn">&times;</span>
-        <div class="modal-flex-container">
-            <div class="modal-media-section">
-                ${isBundle ? `
-                    <div class="bundle-swiper-container">
-                        <div class="swiper bundle-swiper">
-                            <div class="swiper-wrapper">
-                            ${item.allImages.map(img => `
-                                <div class="swiper-slide">
-                                <img src="${img}" alt="Bundle game view" class="modal-main-image" onerror="this.src='https://via.placeholder.com/600?text=Game+Image'">
-                                </div>`).join('')}
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                ` : `
-                    <img src="${featuredImage}" alt="${item.name}" class="modal-main-image"
-                        onerror="this.src='https://via.placeholder.com/600?text=${encodeURIComponent(item.name)}'">
-                `}
-            </div>
-            <div class="modal-details-section">
-                <h2 class="modal-title">${item.name} ${isBundle ? 'Bundle' : ''}</h2>
-                <div class="modal-categories">Category: <strong>${item.category || 'N/A'}</strong></div>
-               
-                <h3 class="modal-subtitle">Details:</h3>
-                <p class="modal-description">${longDescription}</p>
-                ${isBundle ? `<p class="modal-includes">This bundle includes: <strong>${item.games}</strong></p>` : ''}
-               
-                <div class="modal-price-wrapper">
-                    ${priceHTML}
-                </div>
-               
-                <button class="add-to-cart modal-add-to-cart-btn" data-name="${item.name}" data-price="${finalPrice}" data-type="${item.type}">
-                    Add to Cart
-                </button>
-            </div>
-        </div>
-    `;
+  const price = parseFloat(item.price) || 0;
+  let effectiveOffer = parseFloat(item['on offer']) || 0;
+  const endTime = item['offer ends']?.trim();
+  if (endTime) {
+    const end = new Date(endTime).getTime();
+    if (isNaN(end) || end < Date.now()) effectiveOffer = 0;
+  }
+
+  const hasOffer = effectiveOffer > 0 && effectiveOffer < price;
+  const finalPrice = hasOffer ? effectiveOffer : price;
+
+  const priceHTML = hasOffer
+    ? `<div class="modal-price-line sale-mode"><span class="modal-old-price">KSH ${price}</span> <span class="modal-sale-price">KSH ${finalPrice}</span> (On Sale!)</div>`
+    : `<div class="modal-price-line"><span class="modal-regular-price">KSH ${finalPrice}</span></div>`;
+
+  return `
+    <span class="close-btn">&times;</span>
+    <div class="modal-flex-container">
+      <div class="modal-media-section">
+        <img src="${item.image || 'https://via.placeholder.com/600?text=Game+View'}" alt="${item.name}" class="modal-main-image"
+          onerror="this.src='https://via.placeholder.com/600?text=${encodeURIComponent(item.name)}'">
+      </div>
+      <div class="modal-details-section">
+        <h2 class="modal-title">${item.name}</h2>
+        <div class="modal-categories">Category: <strong>${item.category || 'N/A'}</strong></div>
+        <h3 class="modal-subtitle">Details:</h3>
+        <p class="modal-description">${item.description || 'No detailed description available.'}</p>
+        <div class="modal-price-wrapper">${priceHTML}</div>
+        <button class="add-to-cart modal-add-to-cart-btn" data-name="${item.name}" data-price="${finalPrice}" data-type="game">
+          Add to Cart
+        </button>
+      </div>
+    </div>`;
 }
+
 function showDetailModal(item) {
-    const modal = document.getElementById('detail-modal');
-    const modalContent = document.getElementById('modal-content');
-    if (!modal || !modalContent) return;
-    // 1. Populate the modal with the item's detailed information
-    modalContent.innerHTML = generateDetailModalHTML(item);
-    // 2. Display the modal
-    modal.style.display = 'block';
-    // 3. Re-attach cart listener for the new "Add to Cart" button in the modal
-    const modalCartBtn = modalContent.querySelector('.add-to-cart');
-    if (modalCartBtn) {
-        modalCartBtn.onclick = () => {
-            const name = modalCartBtn.dataset.name;
-            const price = parseFloat(modalCartBtn.dataset.price);
-            const type = modalCartBtn.dataset.type;
-            const existing = cart.find(i => i.name === name);
-            if (existing) existing.quantity++;
-            else cart.push({name, price, quantity:1, type});
-            localStorage.setItem("cart", JSON.stringify(cart));
-            modalCartBtn.textContent = "Added!";
-            setTimeout(() => modalCartBtn.textContent = "Add to Cart", 1500);
-            updateCartBadge();
-        };
+  const modal = document.getElementById('detail-modal');
+  const modalContent = document.getElementById('modal-content');
+  if (!modal || !modalContent) return;
+
+  modalContent.innerHTML = generateDetailModalHTML(item);
+  modal.style.display = 'block';
+
+  const modalCartBtn = modalContent.querySelector('.add-to-cart');
+  if (modalCartBtn) {
+    modalCartBtn.onclick = () => {
+      const name = modalCartBtn.dataset.name;
+      const price = parseFloat(modalCartBtn.dataset.price);
+      const existing = cart.find(i => i.name === name);
+      if (existing) existing.quantity++;
+      else cart.push({ name, price, quantity: 1, type: 'game' });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      modalCartBtn.textContent = "Added!";
+      setTimeout(() => modalCartBtn.textContent = "Add to Cart", 1500);
+      updateCartBadge();
+    };
+  }
+
+  modalContent.querySelector('.close-btn')?.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      window.onclick = null;
     }
-    // 4. Handle modal closing
-    const closeBtn = modalContent.querySelector('.close-btn');
-    closeBtn?.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    // Handle clicking outside the modal to close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            window.onclick = null;
-        }
-    }
-    // 5. Re-initialize swiper for bundle images if it's a bundle
-    if (item.type === 'bundle') {
-        setTimeout(() => {
-            const swiperEl = modalContent.querySelector('.bundle-swiper');
-            if (swiperEl) {
-                new Swiper(swiperEl, {
-                    loop: true,
-                    pagination: { el: '.swiper-pagination', clickable: true },
-                    spaceBetween: 10
-                });
-            }
-        }, 100);
-    }
+  };
 }
-/* ----------------------------------------------------------------------------------
-END NEW FUNCTIONALITY
----------------------------------------------------------------------------------- */
+
+/* ---------- 9. CART BADGE ---------- */
 function updateCartBadge() {
-    const badge = document.querySelector('.cart-badge');
-    if (!badge) return;
-    const total = cart.reduce((s,i)=>s+i.quantity,0);
-    badge.textContent = total;
-    badge.classList.toggle('hidden', total===0);
-    badge.classList.remove('pulse');
-    void badge.offsetWidth;
-    if (total>0) badge.classList.add('pulse');
-    window.dispatchEvent(new Event('storage')); // Force sync
+  const badge = document.querySelector('.cart-badge');
+  if (!badge) return;
+  const total = cart.reduce((s, i) => s + i.quantity, 0);
+  badge.textContent = total;
+  badge.classList.toggle('hidden', total === 0);
+  badge.classList.remove('pulse');
+  void badge.offsetWidth;
+  if (total > 0) badge.classList.add('pulse');
+  window.dispatchEvent(new Event('storage'));
 }
+
 /* ---------- 10. GLOBAL EVENTS ---------- */
 window.addEventListener('storage', e => {
-    if (e.key==='cart') { cart = JSON.parse(e.newValue)||[]; updateCartBadge(); }
+  if (e.key === 'cart') { cart = JSON.parse(e.newValue) || []; updateCartBadge(); }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
-    cart = JSON.parse(localStorage.getItem("cart"))||[];
-    updateCartBadge();
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
+  updateCartBadge();
 });
 </script>
     <!-- ✅ FORMSPREE + GOOGLE SHEETS CONTACT FORM -->
